@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Syne, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
+import Header from "@/components/Header/Header";
+
 const syne = Syne({
   variable: "--font-heading",
   subsets: ["latin"],
@@ -30,7 +32,10 @@ export default function RootLayout({
       lang="en"
       className={`${syne.variable} ${hankenGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-background">
+        <Header />
+        <main className="flex-1">{children}</main>
+      </body>
     </html>
   );
 }
