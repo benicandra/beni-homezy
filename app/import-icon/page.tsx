@@ -1,4 +1,6 @@
-import BedIcon from "@/assets/icon/bed.svg";
+import BedIcon from "@/assets/icons/bed.svg";
+import LocationIcon from "@/assets/icons/location.svg";
+import BathIcon from "@/assets/icons/bath.svg";
 
 export default function ImportIcon() {
   return (
@@ -12,6 +14,16 @@ export default function ImportIcon() {
           <BedIcon className="size-8 text-green-400" />
           <BedIcon className="size-6 text-yellow-400" />
           <BedIcon className="size-4 text-purple-400" />
+          <LocationIcon className="size-12 text-blue-600" />
+          <LocationIcon className="size-10 text-red-400" />
+          <LocationIcon className="size-8 text-green-400" />
+          <LocationIcon className="size-6 text-yellow-400" />
+          <LocationIcon className="size-4 text-purple-400" />
+          <BathIcon className="size-12 text-blue-600" />
+          <BathIcon className="size-10 text-red-400" />
+          <BathIcon className="size-8 text-green-400" />
+          <BathIcon className="size-6 text-yellow-400" />
+          <BathIcon className="size-4 text-purple-400" />
         </div>
       </div>
     </div>
