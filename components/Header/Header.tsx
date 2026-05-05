@@ -2,12 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { headerNavItems } from "@/config/navigation";
-import { Button } from "@/components/ui";
+import { Button, Container } from "@/components/ui";
 
 export default function Header() {
   return (
     <header className="bg-background sticky top-0 z-50">
-      <nav className="mx-auto px-[140px] py-6 flex items-center justify-between">
+      <Container as="nav" className="py-6 flex items-center justify-between">
         <Link href="/" className="flex-shrink-0">
           <Image
             src="/logo.svg"
@@ -35,7 +35,7 @@ export default function Header() {
         <Button variant="outline" size="normal">
           Contact Us
         </Button>
-      </nav>
+      </Container>
     </header>
   );
 }

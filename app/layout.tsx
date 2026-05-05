@@ -3,6 +3,8 @@ import { Syne, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import Container from "@/components/ui/Container";
 
 const syne = Syne({
   variable: "--font-heading",
@@ -34,7 +36,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <Container>{children}</Container>
+        </main>
+        <Footer />
       </body>
     </html>
   );
