@@ -10,7 +10,7 @@ export default function Container({
   as: Component = "div",
 }: ContainerProps) {
   return (
-    <Component className={`mx-auto  w-full px-6 lg:px-[140px] ${className}`}>
+    <Component className={`mx-auto  w-full px-6 lg:px-35 ${className}`}>
       {children}
     </Component>
   );
