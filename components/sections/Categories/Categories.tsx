@@ -26,7 +26,7 @@ const categories = [
 export default function Categories() {
   return (
     <section className="flex flex-col gap-16">
-      <div className="flex justify-between items-center mb-12">
+      <div className="flex justify-between items-center">
         <div>
           <h2 className="text-5xl md:text-[44px] leading-tight font-semibold tracking-tight text-foreground">
             Featured Listings
