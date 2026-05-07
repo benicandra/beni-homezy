@@ -1,6 +1,8 @@
 import Image from "next/image";
 
 import { Button } from "@/components/ui";
+import BrowseFilterItem from "@/components/shared/BrowseFilterItem/BrowseFilterItem";
+import AgentMiniCard from "@/components/shared/AgentMiniCard/AgentMiniCard";
 
 import LocationIcon from "@/assets/icons/location.svg";
 import DollarIcon from "@/assets/icons/dollar-square.svg";
@@ -16,6 +18,13 @@ import Prop3 from "@/assets/properties/properties-3.png";
 import Prop1 from "@/assets/properties/properties-1.png";
 import BgText from "@/assets/bg-text.svg";
 import Pattern from "@/assets/pattern.png";
+
+const agentSocialLinks = [
+  { href: "tel:+123456789", label: "Phone", icon: PhoneIcon },
+  { href: "https://instagram.com", label: "Instagram", icon: InstagramIcon },
+  { href: "https://facebook.com", label: "Facebook", icon: FacebookIcon },
+  { href: "https://twitter.com", label: "Twitter", icon: TwitterIcon },
+];
 
 export default function Hero() {
   return (
@@ -50,33 +59,22 @@ export default function Hero() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center gap-6 p-5 w-full bg-white lg:bg-transparent border border-foreground rounded-[15px] lg:pt-6">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-[15px] bg-lavender-40 flex items-center justify-center shrink-0">
-              <LocationIcon className="w-5 h-5 text-foreground" />
-            </div>
-            <div>
-              <p className="text-sm font-light">Location</p>
-              <p className="text-base font-bold">California, US</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-[15px] bg-lavender-40 flex items-center justify-center shrink-0">
-              <DollarIcon className="w-5 h-5 text-foreground" />
-            </div>
-            <div>
-              <p className="text-sm font-light">Price</p>
-              <p className="text-base font-bold">$1500-$2500</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-[15px] bg-lavender-40 flex items-center justify-center shrink-0">
-              <HouseIcon className="w-5 h-5 text-foreground" />
-            </div>
-            <div>
-              <p className="text-sm font-light">Type of Property</p>
-              <p className="text-base font-bold">Apartment</p>
-            </div>
-          </div>
+          <BrowseFilterItem
+            icon={LocationIcon}
+            label="Location"
+            value="California, US"
+          />
+          <BrowseFilterItem
+            icon={DollarIcon}
+            label="Price"
+            value="$1500-$2500"
+          />
+          <BrowseFilterItem
+            icon={HouseIcon}
+            label="Type of Property"
+            value="Apartment"
+          />
+
           <div className="flex items-center sm:col-span-2 lg:col-span-1">
             <Button className="w-full">Browse</Button>
           </div>
@@ -85,59 +83,16 @@ export default function Hero() {
 
       <div className="relative w-full flex justify-center mt-12 lg:mt-0 lg:absolute lg:left-173.25 lg:top-0 lg:w-128.5 lg:h-full lg:block">
         <div className="relative w-128.5 h-132 scale-[0.65] sm:scale-90 lg:scale-100 origin-top lg:origin-top-left -mb-45 sm:-mb-12.5 lg:mb-0">
-          <div className="absolute top-12.5 left-52.25 w-63.25 flex flex-row justify-between gap-2 border-2 rounded-4xl p-[16.5px] bg-[#FFFFFF] z-10">
-            <div className="flex flex-col gap-2.75">
-              <div className="gap-[1.38px]">
-                <p className="text-base font-bold">Edwin Martins</p>
-                <p className="text-xs font-normal">Property Advisor</p>
-              </div>
-              <div className="flex gap-[8.25px]">
-                <a
-                  href="tel:+123456789"
-                  className="flex items-center justify-center w-[16.5px] h-[16.5px] bg-[#686A79] rounded-full hover:opacity-80 transition-opacity"
-                  aria-label="Phone"
-                >
-                  <PhoneIcon className="size-5 text-white" />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-[16.5px] h-[16.5px] bg-[#686A79] rounded-full hover:opacity-80 transition-opacity"
-                  aria-label="Instagram"
-                >
-                  <InstagramIcon className="size-5 text-white" />
-                </a>
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-[16.5px] h-[16.5px] bg-[#686A79] rounded-full hover:opacity-80 transition-opacity"
-                  aria-label="Facebook"
-                >
-                  <FacebookIcon className="size-5 text-white" />
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-[16.5px] h-[16.5px] bg-[#686A79] rounded-full hover:opacity-80 transition-opacity"
-                  aria-label="Twitter"
-                >
-                  <TwitterIcon className="size-5 text-white" />
-                </a>
-              </div>
-            </div>
-            <div>
-              <Image
-                src={Agents7}
-                alt="Illustration 1"
-                width={74.25}
-                height={74.25}
-                className="bg-lavender-40 rounded-[10.31px]"
-              />
-            </div>
-          </div>
+          <AgentMiniCard
+            className="absolute top-12.5 left-52.25 w-63.25"
+            name="Edwin Martins"
+            role="Property Advisor"
+            image={Agents7}
+            imageAlt="Edwin Martins"
+            socialLinks={agentSocialLinks}
+            socialLinkClassName="w-[16.5px] h-[16.5px] bg-[#686A79]"
+            socialIconClassName="size-5 [&>path:first-child]:fill-[#686A79] [&>path:last-child]:fill-white"
+          />
 
           <div className="absolute top-0 left-0 w-62 h-90.5">
             <div className="relative h-[264.8px] border-2 rounded-tl-[40px] rounded-tr-[40px] rounded-br-4xl overflow-hidden">

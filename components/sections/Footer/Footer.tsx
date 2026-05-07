@@ -6,8 +6,16 @@ import InstagramIcon from "@/assets/icons/instagram.svg";
 import TwitterIcon from "@/assets/icons/twitter.svg";
 import PhoneIcon from "@/assets/icons/phone.svg";
 
-import { pagesLinks, socialLinks, utilityLinks } from "@/config/navigation";
+import { pagesLinks, utilityLinks } from "@/config/navigation";
 import { Container } from "@/components/ui";
+import SocialIconLink from "@/components/shared/SocialIconLink/SocialIconLink";
+
+const footerSocialLinks = [
+  { href: "tel:+123456789", label: "Phone", icon: PhoneIcon },
+  { href: "https://instagram.com", label: "Instagram", icon: InstagramIcon },
+  { href: "https://facebook.com", label: "Facebook", icon: FacebookIcon },
+  { href: "https://twitter.com", label: "Twitter", icon: TwitterIcon },
+];
 
 export default function Footer() {
   return (
@@ -34,40 +42,16 @@ export default function Footer() {
                 </p>
               </div>
               <div className="flex gap-6">
-                <a
-                  href="tel:+123456789"
-                  className="flex items-center justify-center w-8 h-8 bg-dark rounded-full hover:opacity-80 transition-opacity"
-                  aria-label="Phone"
-                >
-                  <PhoneIcon className="size-10 text-white" />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-8 h-8 bg-dark rounded-full hover:opacity-80 transition-opacity"
-                  aria-label="Instagram"
-                >
-                  <InstagramIcon className="size-10 text-white" />
-                </a>
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-8 h-8 bg-dark rounded-full hover:opacity-80 transition-opacity"
-                  aria-label="Facebook"
-                >
-                  <FacebookIcon className="size-10 text-white" />
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-8 h-8 bg-dark rounded-full hover:opacity-80 transition-opacity"
-                  aria-label="Twitter"
-                >
-                  <TwitterIcon className="size-10 text-white" />
-                </a>
+                {footerSocialLinks.map((link) => (
+                  <SocialIconLink
+                    key={link.label}
+                    href={link.href}
+                    label={link.label}
+                    icon={link.icon}
+                    className="w-8 h-8 bg-dark"
+                    iconClassName="size-10 [&>path:first-child]:fill-foreground [&>path:last-child]:fill-white"
+                  />
+                ))}
               </div>
             </div>
           </div>

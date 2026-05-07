@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ButtonText } from "@/components/ui";
-import PropertyCard from "@/components/PropertyCard/PropertyCard";
+import PropertyCard from "@/components/shared/PropertyCard/PropertyCard";
 
 import FeaturedIcon from "@/assets/icons/featured.svg";
 import CallIcon from "@/assets/icons/call.svg";
@@ -18,7 +18,7 @@ import PropFeat3 from "@/assets/properties/properties-3-feat.png";
 
 export default function Featured() {
   return (
-    <section className="flex flex-col mt-20 gap-12">
+    <section className="flex flex-col gap-12">
       <div className="flex justify-between items-center mb-12">
         <div>
           <h2 className="text-5xl md:text-[44px] leading-tight font-semibold tracking-tight text-foreground">
