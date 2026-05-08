@@ -4,6 +4,7 @@ import Benefits from "@/components/sections/Benefits/Benefits";
 import Categories from "@/components/sections/Categories/Categories";
 import Cities from "@/components/sections/Cities/Cities";
 import Agents from "@/components/sections/Agents/Agents";
+import Testimonials from "@/components/sections/Testimonial/Testimonials";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Categories />
       <Cities />
       <Agents />
+      <Testimonials />
     </div>
   );
 }
