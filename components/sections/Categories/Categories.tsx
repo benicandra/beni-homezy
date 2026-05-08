@@ -29,11 +29,11 @@ export default function Categories() {
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-5xl md:text-[44px] leading-tight font-semibold tracking-tight text-foreground">
-            Featured Listings
+            Featured Categories
           </h2>
         </div>
         <div>
-          <ButtonText>Browse All Featured</ButtonText>
+          <ButtonText>Browse All Categories</ButtonText>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -3,6 +3,7 @@ import Featured from "@/components/sections/Featured/Featured";
 import Benefits from "@/components/sections/Benefits/Benefits";
 import Categories from "@/components/sections/Categories/Categories";
 import Cities from "@/components/sections/Cities/Cities";
+import Agents from "@/components/sections/Agents/Agents";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Benefits />
       <Categories />
       <Cities />
+      <Agents />
     </div>
   );
 }
