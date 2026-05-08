@@ -51,14 +51,12 @@ export default function Testimonials() {
 
   return (
     <section className="flex flex-col gap-10">
-      {/* Heading — respects Container padding */}
       <div className="text-center">
         <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
           Kind Words From Our Customers
         </h2>
       </div>
 
-      {/* Carousel wrapper — break out ke kanan */}
       <div className="overflow-hidden -mr-6 lg:-mr-35">
         <div
           className="flex gap-6 transition-transform duration-500 ease-in-out"
@@ -77,7 +75,6 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* Navigation buttons — respects Container padding */}
       <div className="flex justify-center gap-10">
         <button
           type="button"
