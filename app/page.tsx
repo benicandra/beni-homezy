@@ -5,6 +5,7 @@ import Categories from "@/components/sections/Categories/Categories";
 import Cities from "@/components/sections/Cities/Cities";
 import Agents from "@/components/sections/Agents/Agents";
 import Testimonials from "@/components/sections/Testimonial/Testimonials";
+import CTA from "@/components/sections/CTA/CTA";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Cities />
       <Agents />
       <Testimonials />
+      <CTA />
     </div>
   );
 }

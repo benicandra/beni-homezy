@@ -28,13 +28,13 @@ const benefits = [
 export default function Benefits() {
   return (
     <section className="flex flex-col gap-16">
-      <div className="flex justify-between items-center ">
-        <div className="w-121.25">
-          <h2 className="text-5xl md:text-[44px] leading-tight font-semibold tracking-tight text-foreground">
+      <div className="flex flex-col gap-6 lg:flex-row lg:justify-between lg:items-center">
+        <div>
+          <h2 className="text-[32px] lg:text-5xl md:text-[44px] leading-tight font-semibold tracking-tight text-foreground">
             Comfort Is Our Top Priority For You
           </h2>
         </div>
-        <div className="w-115.5">
+        <div>
           <p className="text-lg font-light">
             We guarantee that the products we sell will make our customers happy
             because we are very concerned about our consumer satisfaction

@@ -19,11 +19,11 @@ const footerSocialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-background h-141 flex flex-col justify-between">
+    <footer className="bg-background flex flex-col justify-between">
       <Container className="pt-16 pb-8">
-        <div className="grid grid-cols-2 justify-between gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <div className="space-y-6 w-89.5">
+            <div className="space-y-6">
               <div>
                 <Link href="/">
                   <Image
@@ -55,7 +55,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className="flex gap-12">
+          <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
             <div>
               <p className="font-body font-light text-base leading-6.5 text-foreground mb-6">
                 Pages

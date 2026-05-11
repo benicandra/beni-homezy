@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { headerNavItems } from "@/config/navigation";
 import { Button, Container } from "@/components/ui";
+import MenuIcon from "@/assets/icons/menu.svg";
 
 export default function Header() {
   return (
@@ -32,9 +33,15 @@ export default function Header() {
           ))}
         </ul>
 
-        <Button variant="outline" size="normal">
-          Contact Us
-        </Button>
+        <div className="hidden md:block">
+          <Button variant="outline" size="normal">
+            Contact Us
+          </Button>
+        </div>
+
+        <button className="md:hidden p-2" aria-label="Open menu">
+          <MenuIcon className="w-6 h-6" />
+        </button>
       </Container>
     </header>
   );

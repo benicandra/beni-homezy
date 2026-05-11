@@ -28,15 +28,15 @@ const agentSocialLinks = [
 
 export default function Hero() {
   return (
-    <section className="relative flex flex-col lg:block lg:h-155 pb-15 pt-8 lg:pt-0">
-      <div className="hidden lg:block absolute -top-20 left-1/2 w-screen -translate-x-1/2 h-175 overflow-hidden pointer-events-none z-[-1]">
+    <section className="relative flex flex-col gap-10 lg:gap-0 lg:block lg:h-155 pb-25 pt-8 lg:pt-0">
+      <div className="lg:block absolute top-0 bottom-0 lg:-top-20 lg:bottom-auto lg:h-175 left-1/2 w-screen -translate-x-1/2 overflow-hidden pointer-events-none z-[-1]">
         <div className="w-full px-6 lg:px-35 mx-auto h-full relative">
-          <div className="absolute left-208 top-20 w-128.5 h-full">
-            <div className="absolute -top-18 -left-28.25">
+          <div className="absolute left-[-100px] lg:left-208 top-0 lg:top-20 w-128.5 h-full">
+            <div className="absolute bottom-0 lg:bottom-auto lg:-top-18 -left-28.25">
               <Image
                 src={Pattern}
                 alt="Pattern"
-                className="w-180 h-auto max-w-none"
+                className="w-170 h-auto max-w-none"
               />
             </div>
           </div>
@@ -44,14 +44,14 @@ export default function Hero() {
       </div>
 
       <div className="w-full lg:w-190.75 grid gap-8 lg:gap-12 relative z-10">
-        <div className="w-full lg:w-152 space-y-4 text-center lg:text-left">
+        <div className="w-full lg:w-152 space-y-4 text-left">
           <div>
-            <h1 className="font-semibold text-[44px] leading-tight md:text-6xl lg:text-7xl lg:leading-22 tracking-[-4%]">
+            <h1 className="font-semibold text-[42px] leading-tight md:text-6xl lg:text-7xl lg:leading-22 tracking-[-4%]">
               We help people to realize their dream property
             </h1>
           </div>
           <div className="w-full lg:w-114.25 mx-auto lg:mx-0">
-            <p className="font-light text-lg lg:text-xl lg:leading-7.5 text-[#334561]">
+            <p className="font-light text-xl lg:leading-7.5 text-[#334561]">
               We are creative people who provide the best way to you who want to
               have a new comfortable and suitable place to live
             </p>
@@ -81,8 +81,8 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative w-full flex justify-center mt-12 lg:mt-0 lg:absolute lg:left-173.25 lg:top-0 lg:w-128.5 lg:h-full lg:block">
-        <div className="relative w-128.5 h-132 scale-[0.65] sm:scale-90 lg:scale-100 origin-top lg:origin-top-left -mb-45 sm:-mb-12.5 lg:mb-0">
+      <div className="relative w-full flex justify-center mt-12 lg:mt-0 lg:absolute right-13 lg:left-173.25 lg:top-0 lg:w-128.5 lg:h-full lg:block">
+        <div className="relative w-128.5 h-132 scale-[0.70] sm:scale-90 lg:scale-100 origin-top lg:origin-top-left -mb-45 sm:-mb-12.5 lg:mb-0">
           <AgentMiniCard
             className="absolute top-12.5 left-52.25 w-63.25"
             name="Edwin Martins"

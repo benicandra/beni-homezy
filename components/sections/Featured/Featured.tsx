@@ -18,10 +18,10 @@ import PropFeat3 from "@/assets/properties/properties-3-feat.png";
 
 export default function Featured() {
   return (
-    <section className="flex flex-col gap-12">
-      <div className="flex justify-between items-center mb-12">
+    <section className="flex flex-col gap-2 lg:gap-12">
+      <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-center mb-12">
         <div>
-          <h2 className="text-5xl md:text-[44px] leading-tight font-semibold tracking-tight text-foreground">
+          <h2 className="text-[32px] lg:text-5xl leading-tight font-semibold tracking-tight text-foreground">
             Featured Listings
           </h2>
         </div>
@@ -43,7 +43,7 @@ export default function Featured() {
             <FeaturedIcon className="absolute top-6 -left-2 w-28.25 h-10 text-white" />
           </div>
 
-          <div className="w-full lg:w-165 py-6 px-8  flex flex-col justify-between gap-10">
+          <div className="w-full lg:w-165 py-6 px-4 lg:px-8  flex flex-col justify-between gap-6 lg:gap-10">
             <div className="flex flex-col gap-8">
               <div className="flex justify-between items-start">
                 <div className="flex items-baseline gap-0.5">
@@ -78,12 +78,12 @@ export default function Featured() {
 
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col gap-1">
-                  <h4 className="text-[32px] leading-tight font-semibold text-foreground">
+                  <h4 className="text-2xl lg:text-[32px] leading-tight font-semibold text-foreground">
                     COVA Home Realty
                   </h4>
                   <div className="flex items-center gap-2 text-[#686A79]">
                     <LocationIcon className="w-5.5 h-5.5" />
-                    <p className="text-lg font-light">
+                    <p className="text-base lg:text-lg font-light">
                       2699 Green Valley, Highland Lake, FL
                     </p>
                   </div>

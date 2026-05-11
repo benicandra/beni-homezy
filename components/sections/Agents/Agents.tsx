@@ -85,7 +85,7 @@ const agentsData = [
 export default function Agents() {
   return (
     <section className="flex flex-col gap-16">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-center">
         <div>
           <h2 className="text-5xl md:text-[44px] leading-tight font-semibold tracking-tight text-foreground">
             Meet Our Agents
