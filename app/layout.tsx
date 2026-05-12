@@ -18,6 +18,11 @@ const hankenGrotesk = Hanken_Grotesk({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "Homezy | We help people to realize their dream property",
   description:

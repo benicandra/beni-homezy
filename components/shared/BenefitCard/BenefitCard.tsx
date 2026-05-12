@@ -19,7 +19,7 @@ export default function BenefitCard({
 }: BenefitCardProps) {
   return (
     <div
-      className={`flex flex-col gap-16 p-10 border border-foreground rounded-[15px] bg-white ${className}`}
+      className={`flex flex-col gap-16 p-6 lg:p-10 border border-foreground rounded-[15px] bg-white ${className}`}
     >
       <div>
         <div
@@ -30,7 +30,7 @@ export default function BenefitCard({
       </div>
 
       <div className="flex flex-col gap-2">
-        <h5 className="text-2xl font-semibold">{title}</h5>
+        <h5 className="text-xl lg:text-2xl font-semibold">{title}</h5>
         <p className="text-base font-light text-[#686A79]">{description}</p>
       </div>
     </div>

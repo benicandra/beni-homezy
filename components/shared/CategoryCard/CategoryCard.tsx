@@ -30,7 +30,9 @@ export default function CategoryCard({
           <Icon className={iconClassName} />
         </div>
         <div className="flex flex-col gap-0.5">
-          <h5 className="text-2xl font-semibold text-foreground">{title}</h5>
+          <h5 className="text-xl lg:text-2xl font-semibold text-foreground">
+            {title}
+          </h5>
           <p className="text-base font-light text-[#686A79]">{description}</p>
         </div>
       </div>

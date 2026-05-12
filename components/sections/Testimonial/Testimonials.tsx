@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import TestimonialCard from "@/components/shared/TestimonialCard/TestimonialCard";
-
-import ArrowLeftIcon from "@/assets/icons/arrow-left.svg";
-import ArrowRightIcon from "@/assets/icons/arrow-right.svg";
+import { CarouselControls } from "@/components/ui";
 
 const testimonialsData = [
   {
@@ -57,44 +55,39 @@ export default function Testimonials() {
         </h2>
       </div>
 
-      <div className="overflow-hidden -mr-6 lg:-mr-35">
+      <div className="block lg:hidden overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {testimonialsData.map((item, index) => (
+            <div key={index} className="shrink-0 w-full">
+              <TestimonialCard {...item} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="hidden lg:block overflow-hidden lg:-mr-35">
         <div
           className="flex gap-6 transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${translateX}px)` }}
           aria-label="Testimonials carousel"
         >
           {testimonialsData.map((item, index) => (
-            <TestimonialCard
-              key={index}
-              rating={item.rating}
-              quote={item.quote}
-              name={item.name}
-              role={item.role}
-            />
+            <TestimonialCard key={index} {...item} />
           ))}
         </div>
       </div>
 
-      <div className="flex justify-center gap-10">
-        <button
-          type="button"
-          onClick={handlePrev}
-          disabled={currentIndex === 0}
-          aria-label="Previous testimonial"
-          className="disabled:opacity-40 disabled:cursor-not-allowed transition-opacity p-2.5 rounded-[15px] border border-foreground bg-foreground text-white hover:bg-lavender hover:border-lavender"
-        >
-          <ArrowLeftIcon className="size-10" />
-        </button>
-        <button
-          type="button"
-          onClick={handleNext}
-          disabled={currentIndex === maxIndex}
-          aria-label="Next testimonial"
-          className="disabled:opacity-40 disabled:cursor-not-allowed transition-opacity p-2.5 rounded-[15px] border border-foreground bg-foreground text-white hover:bg-lavender hover:border-lavender"
-        >
-          <ArrowRightIcon className="size-10" />
-        </button>
-      </div>
+      <CarouselControls
+        onPrev={handlePrev}
+        onNext={handleNext}
+        disablePrev={currentIndex === 0}
+        disableNext={currentIndex === maxIndex}
+        prevAriaLabel="Previous testimonial"
+        nextAriaLabel="Next testimonial"
+      />
     </section>
   );
 }
