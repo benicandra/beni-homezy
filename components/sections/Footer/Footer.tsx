@@ -1,21 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import FacebookIcon from "@/assets/icons/facebook.svg";
-import InstagramIcon from "@/assets/icons/instagram.svg";
-import TwitterIcon from "@/assets/icons/twitter.svg";
-import PhoneIcon from "@/assets/icons/phone.svg";
-
 import { pagesLinks, utilityLinks } from "@/config/navigation";
 import { Container } from "@/components/ui";
 import SocialIconLink from "@/components/shared/SocialIconLink/SocialIconLink";
-
-const footerSocialLinks = [
-  { href: "tel:+123456789", label: "Phone", icon: PhoneIcon },
-  { href: "https://instagram.com", label: "Instagram", icon: InstagramIcon },
-  { href: "https://facebook.com", label: "Facebook", icon: FacebookIcon },
-  { href: "https://twitter.com", label: "Twitter", icon: TwitterIcon },
-];
+import { defaultSocialLinks } from "@/lib/data";
 
 export default function Footer() {
   return (
@@ -42,7 +31,7 @@ export default function Footer() {
                 </p>
               </div>
               <div className="flex gap-6">
-                {footerSocialLinks.map((link) => (
+                {defaultSocialLinks.map((link) => (
                   <SocialIconLink
                     key={link.label}
                     href={link.href}

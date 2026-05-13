@@ -36,12 +36,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - **Cities** — Popular cities showcase
 - **Agents** — Meet our agents grid
 - **Testimonials** — Customer reviews carousel (overflow peek pattern)
+- **CTA** — Call to action section for newsletter subscription
 - **Header** — Navigation header (via layout)
 - **Footer** — Site footer (via layout)
-
-### 🚧 In Progress
-
-- **CTA** — Call to action section (component ready, not yet rendered on page)
 
 ### 📋 Planned Pages
 
@@ -94,6 +91,31 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 | `ButtonText`| Text-only button with arrow indicator     |
 | `Container` | Layout wrapper with responsive padding    |
 
+## Data Layer
+
+### Type Definitions (`lib/types/`)
+
+| Type | Description |
+|------|-------------|
+| `Agent` | Agent profile with social links |
+| `Property` | Property listing data |
+| `FeaturedProperty` | Extended property with agent info |
+| `City` | City showcase data |
+| `Testimonial` | Customer review data |
+| `Benefit` | Feature/benefit data |
+| `SocialLink` | Social media link with icon |
+
+### Data Files (`lib/data/`)
+
+| File | Description |
+|------|-------------|
+| `agents.ts` | Agent profiles (6 items) |
+| `properties.ts` | Featured property + property cards (4 items) |
+| `cities.ts` | City showcase data (3 items) |
+| `testimonials.ts` | Customer reviews (4 items) |
+| `benefits.ts` | Key benefits (3 items) |
+| `social.ts` | Default social links configuration |
+
 ## Color Palette
 
 | Color        | Hex       | Usage             |
@@ -123,6 +145,9 @@ homezy/
 │   ├── sections/         # Page-level section components (10 sections)
 │   ├── shared/           # Reusable card components (9 components)
 │   └── ui/               # Primitive UI components (Button, Container, etc.)
+├── lib/
+│   ├── types/            # TypeScript type definitions
+│   └── data/             # Centralized data files
 └── config/
     └── navigation.ts     # Nav items & social link data
 ```

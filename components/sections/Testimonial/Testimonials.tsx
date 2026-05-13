@@ -3,44 +3,14 @@
 import { useState } from "react";
 import TestimonialCard from "@/components/shared/TestimonialCard/TestimonialCard";
 import { CarouselControls } from "@/components/ui";
-
-const testimonialsData = [
-  {
-    rating: 5,
-    quote:
-      "Your company is truly upstanding and is behind its product 100%. It's the perfect solution for our business. It has really helped our business.",
-    name: "Brooklyn Simmons",
-    role: "CEO of Asana",
-  },
-  {
-    rating: 5,
-    quote:
-      "Your company is truly upstanding and is behind its product 100%. It's the perfect solution for our business. It has really helped our business.",
-    name: "Brooklyn Simmons",
-    role: "CEO of Asana",
-  },
-  {
-    rating: 5,
-    quote:
-      "Your company is truly upstanding and is behind its product 100%. It's the perfect solution for our business. It has really helped our business.",
-    name: "Brooklyn Simmons",
-    role: "CEO of Asana",
-  },
-  {
-    rating: 5,
-    quote:
-      "Your company is truly upstanding and is behind its product 100%. It's the perfect solution for our business. It has really helped our business.",
-    name: "Brooklyn Simmons",
-    role: "CEO of Asana",
-  },
-];
+import { testimonials } from "@/lib/data";
 
 const CARD_WIDTH_PX = 480;
 const GAP_PX = 24;
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const maxIndex = testimonialsData.length - 1;
+  const maxIndex = testimonials.length - 1;
 
   const handlePrev = () => setCurrentIndex((i) => Math.max(0, i - 1));
   const handleNext = () => setCurrentIndex((i) => Math.min(maxIndex, i + 1));
@@ -60,8 +30,8 @@ export default function Testimonials() {
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {testimonialsData.map((item, index) => (
-            <div key={index} className="shrink-0 w-full">
+          {testimonials.map((item) => (
+            <div key={item.id} className="shrink-0 w-full">
               <TestimonialCard {...item} />
             </div>
           ))}
@@ -74,8 +44,8 @@ export default function Testimonials() {
           style={{ transform: `translateX(-${translateX}px)` }}
           aria-label="Testimonials carousel"
         >
-          {testimonialsData.map((item, index) => (
-            <TestimonialCard key={index} {...item} />
+          {testimonials.map((item) => (
+            <TestimonialCard key={item.id} {...item} />
           ))}
         </div>
       </div>

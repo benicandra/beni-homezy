@@ -3,15 +3,11 @@ import Image from "next/image";
 import { Button } from "@/components/ui";
 import BrowseFilterItem from "@/components/shared/BrowseFilterItem/BrowseFilterItem";
 import AgentMiniCard from "@/components/shared/AgentMiniCard/AgentMiniCard";
+import { defaultSocialLinks } from "@/lib/data";
 
 import LocationIcon from "@/assets/icons/location.svg";
 import DollarIcon from "@/assets/icons/dollar-square.svg";
 import HouseIcon from "@/assets/icons/house.svg";
-
-import FacebookIcon from "@/assets/icons/facebook.svg";
-import InstagramIcon from "@/assets/icons/instagram.svg";
-import TwitterIcon from "@/assets/icons/twitter.svg";
-import PhoneIcon from "@/assets/icons/phone.svg";
 
 import Agents7 from "@/assets/agents/agents-7.png";
 import Prop3 from "@/assets/properties/properties-3.png";
@@ -19,19 +15,12 @@ import Prop1 from "@/assets/properties/properties-1.png";
 import BgText from "@/assets/bg-text.svg";
 import Pattern from "@/assets/pattern.png";
 
-const agentSocialLinks = [
-  { href: "tel:+123456789", label: "Phone", icon: PhoneIcon },
-  { href: "https://instagram.com", label: "Instagram", icon: InstagramIcon },
-  { href: "https://facebook.com", label: "Facebook", icon: FacebookIcon },
-  { href: "https://twitter.com", label: "Twitter", icon: TwitterIcon },
-];
-
 export default function Hero() {
   return (
     <section className="relative flex flex-col gap-10 lg:gap-0 lg:block lg:h-155 pb-25 pt-8 lg:pt-0">
       <div className="lg:block absolute top-0 bottom-0 lg:-top-20 lg:bottom-0 lg:h-175 left-1/2 w-screen -translate-x-1/2 pointer-events-none z-[-1]">
         <div className="w-full px-6 lg:px-35 mx-auto h-full relative">
-          <div className="absolute left-[-100px] lg:left-208 top-0 lg:top-20 w-128.5 h-full lg:block">
+          <div className="absolute -left-25 lg:left-208 top-0 lg:top-20 w-128.5 h-full lg:block">
             <div className="absolute bottom-0 lg:bottom-auto lg:-top-10 -left-28.25 lg:left-[-90]">
               <Image
                 src={Pattern}
@@ -89,7 +78,7 @@ export default function Hero() {
             role="Property Advisor"
             image={Agents7}
             imageAlt="Edwin Martins"
-            socialLinks={agentSocialLinks}
+            socialLinks={defaultSocialLinks}
             socialLinkClassName="w-[16.5px] h-[16.5px] bg-[#686A79]"
             socialIconClassName="size-5 [&>path:first-child]:fill-[#686A79] [&>path:last-child]:fill-white"
           />
@@ -100,6 +89,7 @@ export default function Hero() {
                 src={Prop3}
                 alt="Illustration 2"
                 fill
+                sizes="248px"
                 className="object-cover"
               />
             </div>

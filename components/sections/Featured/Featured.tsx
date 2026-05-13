@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ButtonText } from "@/components/ui";
 import PropertyCard from "@/components/shared/PropertyCard/PropertyCard";
+import { featuredProperties, properties } from "@/lib/data";
 
 import FeaturedIcon from "@/assets/icons/featured.svg";
 import CallIcon from "@/assets/icons/call.svg";
@@ -9,12 +10,6 @@ import BedIcon from "@/assets/icons/bed.svg";
 import BathIcon from "@/assets/icons/bath.svg";
 import AreaIcon from "@/assets/icons/surface-area.svg";
 import RepairIcon from "@/assets/icons/repair.svg";
-
-import Agent8 from "@/assets/agents/agents-8.png";
-import Prop4 from "@/assets/properties/properties-4.webp";
-import PropFeat1 from "@/assets/properties/properties-1-feat.png";
-import PropFeat2 from "@/assets/properties/properties-2-feat.png";
-import PropFeat3 from "@/assets/properties/properties-3-feat.png";
 
 export default function Featured() {
   return (
@@ -34,9 +29,10 @@ export default function Featured() {
         <div className="flex flex-col lg:flex-row bg-white rounded-[15px] border border-lavender-40 mb-12">
           <div className="relative w-full h-75 lg:w-125 lg:h-105 shrink-0">
             <Image
-              src={Prop4}
-              alt="COVA Home Realty"
+              src={featuredProperties.image}
+              alt={featuredProperties.title}
               fill
+              sizes="(min-width: 1024px) 500px, calc(100vw - 48px)"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-carnation opacity-20"></div>
@@ -48,27 +44,27 @@ export default function Featured() {
               <div className="flex justify-between items-start">
                 <div className="flex items-baseline gap-0.5">
                   <span className="text-[40px] leading-none font-bold text-foreground">
-                    $2,095
+                    {featuredProperties.price}
                   </span>
                   <span className="text-[#868893] font-light text-lg">
-                    /month
+                    {featuredProperties.priceSuffix}
                   </span>
                 </div>
                 <div className="flex items-center gap-8">
                   <div className="flex items-center gap-2">
                     <Image
-                      src={Agent8}
-                      alt="Edwin Martins"
+                      src={featuredProperties.agent.image}
+                      alt={featuredProperties.agent.name}
                       width={40}
                       height={40}
                       className="rounded-full bg-lavender-40 object-cover"
                     />
                     <div className="hidden sm:block">
                       <p className="text-base font-bold text-foreground">
-                        Edwin Martins
+                        {featuredProperties.agent.name}
                       </p>
                       <p className="text-[13px] text-[#868893]">
-                        Property Advisor
+                        {featuredProperties.agent.role}
                       </p>
                     </div>
                   </div>
@@ -79,20 +75,18 @@ export default function Featured() {
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col gap-1">
                   <h4 className="text-2xl lg:text-[32px] leading-tight font-semibold text-foreground">
-                    COVA Home Realty
+                    {featuredProperties.title}
                   </h4>
                   <div className="flex items-center gap-2 text-[#686A79]">
                     <LocationIcon className="w-5.5 h-5.5" />
                     <p className="text-base lg:text-lg font-light">
-                      2699 Green Valley, Highland Lake, FL
+                      {featuredProperties.address}
                     </p>
                   </div>
                 </div>
                 <div>
                   <p className="text-[#686A79] text-lg leading-relaxed font-light">
-                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
-                    do amet sint. Velit officia consequat duis enim velit
-                    mollit. Exercitation{" "}
+                    {featuredProperties.description}{" "}
                     <span className="font-semibold text-foreground cursor-pointer hover:text-lavender">
                       Read More
                     </span>
@@ -104,10 +98,10 @@ export default function Featured() {
             <div className="bg-[#F6F4FA] rounded-[15px] p-4 grid grid-cols-2 sm:grid-cols-4 gap-6">
               <div className="flex flex-col gap-2">
                 <span className="text-base text-[#868893] font-light">
-                  3 Bedrooms
+                  Bedrooms
                 </span>
                 <div className="flex items-center gap-2 font-bold text-base text-foreground">
-                  <BedIcon className="w-6 h-6" /> 4
+                  <BedIcon className="w-6 h-6" /> {featuredProperties.beds}
                 </div>
               </div>
               <div className="flex flex-col gap-2">
@@ -115,7 +109,7 @@ export default function Featured() {
                   Bathrooms
                 </span>
                 <div className="flex items-center gap-2 font-bold text-base text-foreground">
-                  <BathIcon className="w-6 h-6" /> 4
+                  <BathIcon className="w-6 h-6" /> {featuredProperties.baths}
                 </div>
               </div>
               <div className="flex flex-col gap-2">
@@ -123,15 +117,15 @@ export default function Featured() {
                   Square Area
                 </span>
                 <div className="flex items-center gap-2 font-bold text-base text-foreground">
-                  <AreaIcon className="w-6 h-6" /> 6x8 m²
+                  <AreaIcon className="w-6 h-6" /> {featuredProperties.area}
                 </div>
               </div>
               <div className="flex flex-col gap-2">
                 <span className="text-base text-[#868893] font-light">
-                  Square Area
+                  Property Type
                 </span>
                 <div className="flex items-center gap-2 font-bold text-base text-foreground">
-                  <RepairIcon className="w-6 h-6" /> Modern Loft
+                  <RepairIcon className="w-6 h-6" /> {featuredProperties.propertyType}
                 </div>
               </div>
             </div>
@@ -139,36 +133,19 @@ export default function Featured() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <PropertyCard
-            image={PropFeat3}
-            price="$15,000"
-            priceSuffix="/month"
-            title="Beach Pros Realty Inc."
-            address="37 Ambleside Gardens, Ilford, IG4 5HH"
-            beds={3}
-            baths={2}
-            area="5x7 m²"
-          />
-          <PropertyCard
-            image={PropFeat2}
-            price="$4,299"
-            priceSuffix="/month"
-            title="Beacon Homes LLC"
-            address="3 Leame Close, Hull, HU3 6ND"
-            beds={3}
-            baths={2}
-            area="5x7 m²"
-          />
-          <PropertyCard
-            image={PropFeat1}
-            price="$5,099"
-            priceSuffix="/month"
-            title="Herringbone Realty"
-            address="28B Highgate Road, London, NW5 1NS"
-            beds={3}
-            baths={2}
-            area="5x7 m²"
-          />
+          {properties.map((property) => (
+            <PropertyCard
+              key={property.id}
+              image={property.image}
+              price={property.price}
+              priceSuffix={property.priceSuffix}
+              title={property.title}
+              address={property.address}
+              beds={property.beds}
+              baths={property.baths}
+              area={property.area}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -31,31 +31,39 @@ export default function PropertyCard({
   return (
     <div className="bg-white rounded-[15px] border border-lavender-40 shadow-sm flex flex-col">
       <div className="relative h-[260px]">
-        <Image src={image} alt={title} fill className="object-fit" />
+        <Image
+          src={image}
+          alt={title}
+          fill
+          sizes="(min-width: 768px) 30vw, calc(100vw - 48px)"
+          className="object-fit"
+        />
         {isFeatured && (
           <FeaturedIcon className="absolute top-5 -left-2 w-[113px] h-10 text-white" />
         )}
       </div>
       <div className="py-8 px-6 flex-1 gap-4 flex flex-col">
         <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-1">
-        <div className="flex items-baseline gap-1">
-          <span className="text-[32px] font-bold text-foreground">{price}</span>
-          {priceSuffix && (
-            <span className="text-[#868893] font-light text-sm">
-              {priceSuffix}
-            </span>
-          )}
-        </div>
-        <h4 className="text-[22px] leading-tight font-semibold text-foreground">
-          {title}
-        </h4>
-        </div>
-        <div>
-        <p className="text-[15px] font-light text-[#868893] flex-1">
-          {address}
-        </p>
-        </div>
+          <div className="flex flex-col gap-1">
+            <div className="flex items-baseline gap-1">
+              <span className="text-[32px] font-bold text-foreground">
+                {price}
+              </span>
+              {priceSuffix && (
+                <span className="text-[#868893] font-light text-sm">
+                  {priceSuffix}
+                </span>
+              )}
+            </div>
+            <h4 className="text-[22px] leading-tight font-semibold text-foreground">
+              {title}
+            </h4>
+          </div>
+          <div>
+            <p className="text-[15px] font-light text-[#868893] flex-1">
+              {address}
+            </p>
+          </div>
         </div>
 
         <div className="flex items-start pt-6 border-t border-[#F2F2F2] gap-6">

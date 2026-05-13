@@ -5,28 +5,7 @@ import { useState } from "react";
 import { CarouselControls } from "@/components/ui";
 import { ButtonText } from "@/components/ui";
 import CitiesCard from "@/components/shared/CitiesCard/CitiesCard";
-
-import City1 from "@/assets/cities/cities-1.webp";
-import City2 from "@/assets/cities/cities-2.webp";
-import City3 from "@/assets/cities/cities-3.webp";
-
-const cities = [
-  {
-    image: City3,
-    title: "Pasadena, Oklahoma",
-    description: "100+ listings",
-  },
-  {
-    image: City2,
-    title: "Lafayette, California",
-    description: "100+ listings",
-  },
-  {
-    image: City1,
-    title: "New York",
-    description: "100+ listings",
-  },
-];
+import { cities } from "@/lib/data";
 
 export default function Cities() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,7 +34,7 @@ export default function Cities() {
           aria-label="Cities carousel"
         >
           {cities.map((city) => (
-            <div key={city.title} className="shrink-0 w-full">
+            <div key={city.id} className="shrink-0 w-full">
               <CitiesCard {...city} />
             </div>
           ))}
@@ -64,7 +43,7 @@ export default function Cities() {
 
       <div className="hidden md:grid md:grid-cols-3 gap-8">
         {cities.map((city) => (
-          <CitiesCard key={city.title} {...city} />
+          <CitiesCard key={city.id} {...city} />
         ))}
       </div>
 
