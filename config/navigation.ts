@@ -1,10 +1,22 @@
-export const headerNavItems = [
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+interface SocialLink {
+  icon: string;
+  href: string;
+  alt: string;
+}
+
+export const headerNavItems: NavLink[] = [
   { label: "Home", href: "/" },
   // { label: "Properties", href: "/properties" }, // TODO: Uncomment when page is created
   // { label: "Agents", href: "/agents" }, // TODO: Uncomment when page is created
   // { label: "Pages", href: "/pages" }, // TODO: Uncomment when page is created
 ];
-export const pagesLinks = [
+
+export const pagesLinks: NavLink[] = [
   { label: "Home V1", href: "/" },
   // { label: "Home V2", href: "/home-v2" }, // TODO: Uncomment when page is created
   // { label: "Search Properties V1", href: "/properties/v1" }, // TODO: Uncomment when page is created
@@ -21,7 +33,8 @@ export const pagesLinks = [
   // { label: "Contact Us V2", href: "/contact/v2" }, // TODO: Uncomment when page is created
   // { label: "FAQ", href: "/faq" }, // TODO: Uncomment when page is created
 ];
-export const utilityLinks = [
+
+export const utilityLinks: NavLink[] = [
   // { label: "Sign In", href: "/sign-in" }, // TODO: Uncomment when page is created
   // { label: "Sign Up", href: "/sign-up" }, // TODO: Uncomment when page is created
   // { label: "Forgot Password", href: "/forgot-password" }, // TODO: Uncomment when page is created
@@ -31,7 +44,8 @@ export const utilityLinks = [
   // { label: "Licenses", href: "/licenses" }, // TODO: Uncomment when page is created
   // { label: "Change Log", href: "/change-log" }, // TODO: Uncomment when page is created
 ];
-export const socialLinks = [
+
+export const socialLinks: SocialLink[] = [
   { icon: "/icons/phone.svg", href: "tel:+123456789", alt: "Phone" },
   { icon: "/icons/instagram.svg", href: "https://instagram.com", alt: "Instagram" },
   { icon: "/icons/facebook.svg", href: "https://facebook.com", alt: "Facebook" },
