@@ -21,15 +21,15 @@ export default function CategoryCard({
 }: CategoryCardProps) {
   return (
     <div
-      className={`flex flex-row p-8 justify-between items-center border border-lavender-40 rounded-[15px] bg-white ${className}`}
+      className={`flex flex-row md:flex-col xl:flex-row p-8 justify-between items-center border border-lavender-40 rounded-[15px] bg-white ${className}`}
     >
-      <div className="flex flex-row gap-4 items-center">
+      <div className="flex flex-row md:flex-col xl:flex-row gap-4 items-center md:items-center xl:items-center">
         <div
           className={`w-15 h-15 flex items-center justify-center rounded-[15px] ${iconWrapperClassName}`}
         >
-          <Icon className={iconClassName} />
+          <Icon className={`w-8 h-8 text-foreground ${iconClassName}`} />
         </div>
-        <div className="flex flex-col gap-0.5">
+        <div className="flex flex-col gap-0.5 md:text-center xl:text-left">
           <h5 className="text-xl lg:text-2xl font-semibold text-foreground">
             {title}
           </h5>

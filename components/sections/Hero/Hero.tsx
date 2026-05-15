@@ -17,15 +17,15 @@ import Pattern from "@/assets/pattern.png";
 
 export default function Hero() {
   return (
-    <section className="relative flex flex-col gap-10 lg:gap-0 lg:block lg:h-155 pb-25 pt-8 lg:pt-0">
+    <section className="relative flex flex-col gap-10 lg:gap-0 lg:block lg:h-155 pb-25 md:pb-32 pt-8 lg:pt-0">
       <div className="lg:block absolute top-0 bottom-0 lg:-top-20 lg:bottom-0 lg:h-175 left-1/2 w-screen -translate-x-1/2 pointer-events-none z-[-1]">
         <div className="w-full px-6 lg:px-35 mx-auto h-full relative">
-          <div className="absolute -left-25 lg:left-208 top-0 lg:top-20 w-128.5 h-full lg:block">
-            <div className="absolute bottom-0 lg:bottom-auto lg:-top-10 -left-28.25 lg:left-[-90]">
+          <div className="absolute -left-25 md:left-1/2 md:-translate-x-1/2 lg:left-208 lg:translate-x-0 top-0 lg:top-20 w-128.5 md:w-170 lg:w-128.5 h-full lg:block">
+            <div className="absolute bottom-0 lg:bottom-auto lg:-top-10 -left-28.25 md:left-0 lg:left-[-90]">
               <Image
                 src={Pattern}
                 alt="Pattern"
-                className="w-170 lg:w-174 h-auto max-w-none"
+                className="w-170 md:w-200 lg:w-174 h-auto max-w-none"
               />
             </div>
           </div>
@@ -47,7 +47,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center gap-6 p-5 w-full bg-white lg:bg-transparent border border-foreground rounded-[15px] lg:pt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 items-center gap-6 p-5 w-full bg-white lg:bg-transparent border border-foreground rounded-[15px] lg:pt-6">
           <BrowseFilterItem
             icon={LocationIcon}
             label="Location"
@@ -64,14 +64,14 @@ export default function Hero() {
             value="Apartment"
           />
 
-          <div className="flex items-center sm:col-span-2 lg:col-span-1">
+          <div className="flex items-center lg:col-span-1">
             <Button className="w-full">Browse</Button>
           </div>
         </div>
       </div>
 
       <div className="relative w-full flex justify-center mt-12 lg:mt-0 lg:absolute right-13 lg:left-173.25 lg:top-0 lg:w-128.5 lg:h-full lg:block">
-        <div className="relative w-128.5 h-132 scale-[0.70] sm:scale-75 lg:scale-100 origin-top lg:origin-top-left -mb-45 sm:-mb-20 lg:mb-0">
+        <div className="relative w-128.5 h-132 scale-[0.70] sm:scale-75 md:scale-90 lg:scale-100 origin-top lg:origin-top-left -mb-45 sm:-mb-20 md:mb-0 lg:mb-0">
           <AgentMiniCard
             className="absolute top-12.5 left-52.25 w-63.25"
             name="Edwin Martins"

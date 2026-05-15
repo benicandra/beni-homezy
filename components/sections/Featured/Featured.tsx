@@ -26,8 +26,8 @@ export default function Featured() {
       </div>
 
       <div className="flex flex-col gap-10">
-        <div className="flex flex-col lg:flex-row bg-white rounded-[15px] border border-lavender-40 mb-12">
-          <div className="relative w-full h-75 lg:w-125 lg:h-105 shrink-0">
+        <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] bg-white rounded-[15px] border border-lavender-40 mb-12">
+          <div className="relative w-full h-75 lg:w-[400px] xl:w-[500px] lg:h-auto lg:aspect-[4/3] shrink-0">
             <Image
               src={featuredProperties.image}
               alt={featuredProperties.title}
@@ -39,7 +39,7 @@ export default function Featured() {
             <FeaturedIcon className="absolute top-6 -left-2 w-28.25 h-10 text-white" />
           </div>
 
-          <div className="w-full lg:w-165 py-6 px-4 lg:px-8  flex flex-col justify-between gap-6 lg:gap-10">
+          <div className="w-full py-6 px-4 lg:px-8 flex flex-col justify-between gap-6 lg:gap-10">
             <div className="flex flex-col gap-8">
               <div className="flex justify-between items-start">
                 <div className="flex items-baseline gap-0.5">
@@ -125,7 +125,8 @@ export default function Featured() {
                   Property Type
                 </span>
                 <div className="flex items-center gap-2 font-bold text-base text-foreground">
-                  <RepairIcon className="w-6 h-6" /> {featuredProperties.propertyType}
+                  <RepairIcon className="w-6 h-6" />{" "}
+                  {featuredProperties.propertyType}
                 </div>
               </div>
             </div>

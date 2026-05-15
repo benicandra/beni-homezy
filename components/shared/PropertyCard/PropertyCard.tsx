@@ -66,15 +66,15 @@ export default function PropertyCard({
           </div>
         </div>
 
-        <div className="flex items-start pt-6 border-t border-[#F2F2F2] gap-6">
+        <div className="flex flex-row lg:flex-col xl:flex-row items-center lg:items-start xl:items-center pt-6 border-t border-[#F2F2F2] gap-3 lg:gap-3 xl:gap-6">
           <div className="flex items-center gap-2 text-sm text-foreground font-medium">
-            <BedIcon className="w-[24px] h-[24px]" /> {beds} Beds
+            <BedIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {beds} Beds
           </div>
           <div className="flex items-center gap-2 text-sm text-foreground font-medium">
-            <BathIcon className="w-[24px] h-[24px]" /> {baths} Baths
+            <BathIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {baths} Baths
           </div>
           <div className="flex items-center gap-2 text-sm text-foreground font-medium">
-            <AreaIcon className="w-[24px] h-[24px]" /> {area}
+            <AreaIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {area}
           </div>
         </div>
       </div>
