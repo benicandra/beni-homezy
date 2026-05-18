@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="bg-background flex flex-col justify-between">
       <Container className="pt-16 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
+          <div className="lg:max-w-89.5">
             <div className="space-y-6">
               <div>
                 <Link href="/">

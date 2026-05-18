@@ -26,7 +26,7 @@ export default function Button({
   const variantStyles = {
     fill: "bg-foreground text-white hover:bg-lavender",
     outline:
-      "border border-foreground bg-transparent text-foreground hover:border-lavender hover:bg-lavender-20",
+      "border border-foreground bg-transparent text-foreground hover:border-lavender hover:bg-lavender-20 cursor-pointer",
   };
 
   const combinedStyles = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;

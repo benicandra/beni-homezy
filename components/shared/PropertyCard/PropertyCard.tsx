@@ -30,16 +30,18 @@ export default function PropertyCard({
 }: PropertyCardProps) {
   return (
     <div className="bg-white rounded-[15px] border border-lavender-40 shadow-sm flex flex-col">
-      <div className="relative h-[260px]">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          sizes="(min-width: 768px) 30vw, calc(100vw - 48px)"
-          className="object-fit"
-        />
+      <div className="relative h-65">
+        <div className="absolute inset-0 overflow-hidden rounded-t-[14px]">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="(min-width: 768px) 30vw, calc(100vw - 48px)"
+            className="object-cover"
+          />
+        </div>
         {isFeatured && (
-          <FeaturedIcon className="absolute top-5 -left-2 w-[113px] h-10 text-white" />
+          <FeaturedIcon className="absolute top-5 -left-2 w-28.25 h-10 text-white z-10" />
         )}
       </div>
       <div className="py-8 px-6 flex-1 gap-4 flex flex-col">
@@ -68,10 +70,12 @@ export default function PropertyCard({
 
         <div className="flex flex-row lg:flex-col xl:flex-row items-center lg:items-start xl:items-center pt-6 border-t border-[#F2F2F2] gap-3 lg:gap-3 xl:gap-6">
           <div className="flex items-center gap-2 text-sm text-foreground font-medium">
-            <BedIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {beds} Beds
+            <BedIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {beds}{" "}
+            Beds
           </div>
           <div className="flex items-center gap-2 text-sm text-foreground font-medium">
-            <BathIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {baths} Baths
+            <BathIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {baths}{" "}
+            Baths
           </div>
           <div className="flex items-center gap-2 text-sm text-foreground font-medium">
             <AreaIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {area}

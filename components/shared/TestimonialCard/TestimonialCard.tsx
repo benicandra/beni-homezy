@@ -20,7 +20,7 @@ export default function TestimonialCard({
 
   return (
     <div
-      className={`flex flex-col gap-8 p-8 border-2 border-lavender-20 rounded-[15px] bg-white min-w-[334px] md:min-w-[480px] ${className}`}
+      className={`flex flex-col gap-8 p-8 border-2 border-lavender-20 rounded-[15px] bg-white min-w-83.5 md:min-w-120 ${className}`}
     >
       <div
         className="flex gap-3"

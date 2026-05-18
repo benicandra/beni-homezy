@@ -7,7 +7,7 @@ export default function CTA() {
   return (
     <section>
       <div className="flex flex-col lg:flex-row h-auto lg:h-95 border-2 rounded-[15px] border-foreground bg-lavender-80 overflow-hidden">
-        <div className="flex flex-col w-full lg:w-[50%] gap-6 justify-center py-10 px-8 lg:py-14 lg:px-18 relative z-10">
+        <div className="flex flex-col w-full lg:w-[50%] gap-6 justify-center md:items-center md:text-center py-10 px-8 lg:py-14 lg:px-18 relative z-10">
           <div className="flex flex-col gap-2">
             <h2 className="text-3xl font-semibold lg:text-5xl text-white">
               Subscribe To Our Newsletter
@@ -16,7 +16,7 @@ export default function CTA() {
               Join our newsletter to stay up to date on features and releases.
             </p>
           </div>
-          <div className="flex flex-col gap-2 lg:gap-[62px] lg:flex-row lg:items-center lg:bg-white lg:rounded-[15px] lg:p-2 max-w-md">
+          <div className="flex flex-col gap-2 w-full lg:gap-15.5 lg:flex-row lg:items-center lg:bg-white lg:rounded-[15px] lg:p-2 max-w-md">
             <input
               type="email"
               placeholder="Enter Your Email Address"
@@ -31,13 +31,13 @@ export default function CTA() {
             </Button>
           </div>
         </div>
-        <div className="mt-[-60px] lg:mt-0 h-[260px] lg:h-auto lg:flex-1 relative overflow-hidden">
+        <div className="-mt-15 lg:mt-0 h-65 lg:h-auto lg:flex-1 relative overflow-hidden">
           <Image
             src={Pattern}
             alt="Pattern"
-            width={Pattern.width}
-            height={Pattern.height}
-            className="absolute h-full w-auto top-0"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-center"
           />
         </div>
       </div>

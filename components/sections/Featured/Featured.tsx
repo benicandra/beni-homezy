@@ -27,16 +27,19 @@ export default function Featured() {
 
       <div className="flex flex-col gap-10">
         <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] bg-white rounded-[15px] border border-lavender-40 mb-12">
-          <div className="relative w-full h-75 lg:w-[400px] xl:w-[500px] lg:h-auto lg:aspect-[4/3] shrink-0">
-            <Image
-              src={featuredProperties.image}
-              alt={featuredProperties.title}
-              fill
-              sizes="(min-width: 1024px) 500px, calc(100vw - 48px)"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-carnation opacity-20"></div>
-            <FeaturedIcon className="absolute top-6 -left-2 w-28.25 h-10 text-white" />
+          <div className="relative w-full h-75 lg:w-100 xl:w-125 lg:h-auto shrink-0">
+            <div className="absolute inset-0 overflow-hidden rounded-t-[14px] lg:rounded-tr-none lg:rounded-l-[14px]">
+              <Image
+                src={featuredProperties.image}
+                alt={featuredProperties.title}
+                fill
+                sizes="(min-width: 1024px) 500px, calc(100vw - 48px)"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-carnation opacity-20"></div>
+            </div>
+
+            <FeaturedIcon className="absolute top-6 -left-2 w-28.25 h-10 text-white z-10" />
           </div>
 
           <div className="w-full py-6 px-4 lg:px-8 flex flex-col justify-between gap-6 lg:gap-10">

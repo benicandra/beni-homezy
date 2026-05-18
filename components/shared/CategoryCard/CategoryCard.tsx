@@ -36,7 +36,7 @@ export default function CategoryCard({
           <p className="text-base font-light text-[#686A79]">{description}</p>
         </div>
       </div>
-      <div className="flex flex-row gap-2 items-center justify-center">
+      <div className="flex flex-row gap-2 items-center justify-center cursor-pointer">
         <div>
           <p className="text-base font-semibold">View</p>
         </div>

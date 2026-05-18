@@ -12,7 +12,7 @@ interface CarouselControlsProps {
 }
 
 const btnBase =
-  "disabled:opacity-40 disabled:cursor-not-allowed transition-opacity p-2.5 rounded-[15px] border border-foreground bg-foreground text-white hover:bg-lavender hover:border-lavender";
+  "disabled:opacity-40 disabled:cursor-not-allowed transition-opacity p-2.5 rounded-[15px] border border-foreground bg-foreground text-white hover:bg-lavender hover:border-lavender cursor-pointer";
 
 export default function CarouselControls({
   onPrev,

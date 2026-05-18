@@ -15,7 +15,7 @@ export default function ButtonText({
 }: ButtonTextProps) {
   return (
     <button
-      className={`inline-flex items-center gap-2 font-body font-bold text-lg leading-7 text-foreground hover:text-lavender transition-colors ${className}`}
+      className={`inline-flex items-center gap-2 font-body font-bold text-lg leading-7 text-foreground hover:text-lavender transition-colors cursor-pointer ${className}`}
       {...props}
     >
       <span>{children}</span>

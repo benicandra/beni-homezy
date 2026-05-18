@@ -38,7 +38,7 @@ export default function AgentCard({
           </h5>
           <p className="text-lg font-light text-[#686A79]">{role}</p>
         </div>
-        <div className="flex gap-[12px] md:justify-center">
+        <div className="flex gap-3 md:justify-center">
           {socialLinks.map((link) => (
             <SocialIconLink
               key={link.label}
@@ -54,7 +54,7 @@ export default function AgentCard({
       <Image
         src={image}
         alt={imageAlt ?? name}
-        className="w-[108px] h-[108px] bg-carnation-40 rounded-[15px] shrink-0 object-cover md:mx-auto xl:mx-0 md:mt-4 xl:mt-0"
+        className="w-27 h-27 bg-carnation-40 rounded-[15px] shrink-0 object-cover md:mx-auto xl:mx-0 md:mt-4 xl:mt-0"
       />
     </div>
   );
