@@ -15,6 +15,7 @@ interface PropertyCardProps {
   beds: number | string;
   baths: number | string;
   area: string;
+  layout?: "vertical" | "horizontal";
 }
 
 export default function PropertyCard({
@@ -27,11 +28,28 @@ export default function PropertyCard({
   beds,
   baths,
   area,
+  layout = "vertical",
 }: PropertyCardProps) {
   return (
-    <div className="bg-white rounded-[15px] border border-lavender-40 shadow-sm flex flex-col">
-      <div className="relative h-65">
-        <div className="absolute inset-0 overflow-hidden rounded-t-[14px]">
+    <div
+      className={`bg-white rounded-[15px] border border-lavender-40 shadow-sm flex ${
+        layout === "horizontal" ? "flex-col sm:flex-row" : "flex-col"
+      }`}
+    >
+      <div
+        className={`relative ${
+          layout === "horizontal"
+            ? "h-65 sm:h-auto sm:w-[240px] md:w-[280px] shrink-0"
+            : "h-65 w-full"
+        }`}
+      >
+        <div
+          className={`absolute inset-0 overflow-hidden ${
+            layout === "horizontal"
+              ? "rounded-t-[14px] sm:rounded-tr-none sm:rounded-l-[14px]"
+              : "rounded-t-[14px]"
+          }`}
+        >
           <Image
             src={image}
             alt={title}
@@ -44,11 +62,15 @@ export default function PropertyCard({
           <FeaturedIcon className="absolute top-5 -left-2 w-28.25 h-10 text-white z-10" />
         )}
       </div>
-      <div className="py-8 px-6 flex-1 gap-4 flex flex-col">
-        <div className="flex flex-col gap-4">
+      <div
+        className={`flex-1 flex flex-col ${
+          layout === "horizontal" ? "gap-3 p-5 sm:p-6" : "gap-4 py-8 px-6"
+        }`}
+      >
+        <div className={`flex flex-col ${layout === "horizontal" ? "gap-2" : "gap-4"}`}>
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline gap-1">
-              <span className="text-[32px] font-bold text-foreground">
+              <span className={`font-bold text-foreground ${layout === "horizontal" ? "text-[28px]" : "text-[32px]"}`}>
                 {price}
               </span>
               {priceSuffix && (
@@ -57,7 +79,7 @@ export default function PropertyCard({
                 </span>
               )}
             </div>
-            <h4 className="text-[22px] leading-tight font-semibold text-foreground">
+            <h4 className={`leading-tight font-semibold text-foreground ${layout === "horizontal" ? "text-xl" : "text-[22px]"}`}>
               {title}
             </h4>
           </div>
@@ -68,17 +90,17 @@ export default function PropertyCard({
           </div>
         </div>
 
-        <div className="flex flex-row lg:flex-col xl:flex-row items-center lg:items-start xl:items-center pt-6 border-t border-[#F2F2F2] gap-3 lg:gap-3 xl:gap-6">
-          <div className="flex items-center gap-2 text-sm text-foreground font-medium">
-            <BedIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {beds}{" "}
+        <div className={`flex flex-row lg:flex-col xl:flex-row items-center lg:items-start xl:items-center border-t border-[#F2F2F2] mt-auto ${layout === "horizontal" ? "pt-4 gap-4" : "pt-6 gap-3 lg:gap-3 xl:gap-6"}`}>
+          <div className="flex items-center gap-2 text-sm text-foreground font-medium whitespace-nowrap">
+            <BedIcon className={`w-5 h-5 ${layout === "horizontal" ? "" : "lg:w-5 xl:w-6 lg:h-5 xl:h-6"}`} /> {beds}{" "}
             Beds
           </div>
-          <div className="flex items-center gap-2 text-sm text-foreground font-medium">
-            <BathIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {baths}{" "}
+          <div className="flex items-center gap-2 text-sm text-foreground font-medium whitespace-nowrap">
+            <BathIcon className={`w-5 h-5 ${layout === "horizontal" ? "" : "lg:w-5 xl:w-6 lg:h-5 xl:h-6"}`} /> {baths}{" "}
             Baths
           </div>
-          <div className="flex items-center gap-2 text-sm text-foreground font-medium">
-            <AreaIcon className="w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6" /> {area}
+          <div className="flex items-center gap-2 text-sm text-foreground font-medium whitespace-nowrap">
+            <AreaIcon className={`w-5 h-5 ${layout === "horizontal" ? "" : "lg:w-5 xl:w-6 lg:h-5 xl:h-6"}`} /> {area}
           </div>
         </div>
       </div>
