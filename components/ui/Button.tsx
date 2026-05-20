@@ -15,7 +15,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "font-body font-bold rounded-[15px] inline-flex items-center justify-center";
+    "font-body font-bold rounded-[15px] inline-flex items-center justify-center cursor-pointer";
 
   const sizeStyles = {
     small: "py-2.5 px-6 text-sm leading-5",
@@ -26,7 +26,7 @@ export default function Button({
   const variantStyles = {
     fill: "bg-foreground text-white hover:bg-lavender",
     outline:
-      "border border-foreground bg-transparent text-foreground hover:border-lavender hover:bg-lavender-20 cursor-pointer",
+      "border border-foreground bg-transparent text-foreground hover:border-lavender hover:bg-lavender-20",
   };
 
   const combinedStyles = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;

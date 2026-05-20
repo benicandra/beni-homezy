@@ -65,7 +65,7 @@ export default function Hero() {
           />
 
           <div className="flex items-center lg:col-span-1">
-            <Button className="w-full">Browse</Button>
+            <Button className="w-full cursor-pointer">Browse</Button>
           </div>
         </div>
       </div>
