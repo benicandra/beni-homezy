@@ -25,6 +25,15 @@ const Map = dynamic(() => import("@/components/shared/Map/Map"), {
 
 export default function PropertySearch() {
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
+  const [filteredProperties, setFilteredProperties] = useState(properties);
+
+  const handleBrowse = () => {
+    const filtered = properties.filter((prop) => {
+      const numericPrice = parseInt(prop.price.replace(/[^0-9]/g, ""), 10);
+      return numericPrice >= 1500 && numericPrice <= 2500;
+    });
+    setFilteredProperties(filtered);
+  };
 
   return (
     <section className="flex flex-col gap-10">
@@ -34,8 +43,8 @@ export default function PropertySearch() {
         </h2>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-5 lg:gap-6 items-stretch">
-        <div className="grid grid-cols-1 lg:grid-cols-4 items-center w-full bg-white border border-foreground rounded-[15px] p-4 lg:p-3 lg:pl-6">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-4 items-center w-full bg-white border border-foreground rounded-[15px] p-4 gap-8 lg:p-3 lg:pl-6">
           <BrowseFilterItem
             icon={LocationIcon}
             label="Location"
@@ -53,10 +62,12 @@ export default function PropertySearch() {
           />
 
           <div className="flex items-center justify-end lg:col-span-1 w-full mt-4 lg:mt-0">
-            <Button className="w-full lg:w-auto px-10">Browse</Button>
+            <Button className="w-full lg:w-auto px-10" onClick={handleBrowse}>
+              Browse
+            </Button>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2 px-8 py-4 bg-lavender-40 border rounded-[15px] border-foreground cursor-pointer hover:bg-lavender-80 transition-colors shrink-0 h-full">
+        <div className="flex  lg:flex-col items-center justify-center gap-3 px-8 py-4 bg-lavender-40 border rounded-[15px] border-foreground cursor-pointer hover:bg-lavender-80 transition-colors shrink-0 h-full">
           <CandleIcon className="w-6 h-6" />
 
           <p className="text-base font-medium whitespace-nowrap">More Filter</p>
@@ -65,13 +76,13 @@ export default function PropertySearch() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div className="w-full h-[500px] lg:h-full lg:min-h-[600px] rounded-[15px] overflow-hidden border border-[#E5E5E5]">
-          <Map />
+          <Map properties={filteredProperties} />
         </div>
 
         <div className="flex flex-col gap-8">
           <div className="flex justify-between items-center">
             <h3 className="text-[32px] font-semibold text-foreground tracking-tight">
-              124 Results
+              {filteredProperties.length} Results
             </h3>
             <div className="flex items-center gap-4">
               <button
@@ -104,7 +115,7 @@ export default function PropertySearch() {
                 : "flex flex-col gap-6"
             }
           >
-            {properties.slice(0, 4).map((property) => (
+            {filteredProperties.map((property) => (
               <PropertyCard
                 key={property.id}
                 image={property.image}

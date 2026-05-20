@@ -7,7 +7,7 @@ import PropFeat3 from "@/assets/properties/properties-3-feat.png";
 import Agent8 from "@/assets/agents/agents-8.png";
 
 export const featuredProperties: FeaturedProperty = {
-    id: "featured-cova-home-realty",
+  id: "featured-cova-home-realty",
   image: Prop4,
   price: "$2,095",
   priceSuffix: "/month",
@@ -28,7 +28,7 @@ export const featuredProperties: FeaturedProperty = {
 };
 
 export const properties: Property[] = [
-    {
+  {
     id: "prop-beach-pros-realty",
     image: PropFeat3,
     price: "$15,000",
@@ -42,7 +42,7 @@ export const properties: Property[] = [
   {
     id: "prop-beacon-homes",
     image: PropFeat2,
-    price: "$4,299",
+    price: "$1,799",
     priceSuffix: "/month",
     title: "Beacon Homes LLC",
     address: "3 Leame Close, Hull, HU3 6ND",
@@ -53,7 +53,7 @@ export const properties: Property[] = [
   {
     id: "prop-herringbone-realty",
     image: PropFeat1,
-    price: "$5,099",
+    price: "$2,099",
     priceSuffix: "/month",
     title: "Herringbone Realty",
     address: "28B Highgate Road, London, NW5 1NS",

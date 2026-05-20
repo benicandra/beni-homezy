@@ -11,7 +11,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import PropertyCard from "@/components/shared/PropertyCard/PropertyCard";
-import { properties } from "@/lib/data";
+import type { Property } from "@/lib/types";
 import { renderToStaticMarkup } from "react-dom/server";
 import HouseIcon from "@/assets/icons/house-linear.svg";
 
@@ -56,7 +56,11 @@ const createCustomIcon = (price: string, isActive: boolean) => {
   });
 };
 
-export default function Map() {
+interface MapProps {
+  properties: Property[];
+}
+
+export default function Map({ properties }: MapProps) {
   const [activeMarkerId, setActiveMarkerId] = useState<string | null>(null);
 
   return (
@@ -94,7 +98,7 @@ export default function Map() {
         {properties.map((property, index) => (
           <Marker
             key={property.id}
-            position={markerPositions[index]}
+            position={markerPositions[index % markerPositions.length]}
             icon={createCustomIcon(
               property.price,
               activeMarkerId === property.id,

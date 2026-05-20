@@ -47,7 +47,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 items-center gap-6 p-5 w-full bg-white lg:bg-transparent border border-foreground rounded-[15px] lg:pt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 items-center gap-8 p-5 w-full bg-white lg:bg-transparent border border-foreground rounded-[15px] lg:pt-6">
           <BrowseFilterItem
             icon={LocationIcon}
             label="Location"
