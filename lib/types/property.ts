@@ -11,6 +11,9 @@ export interface Property {
     beds: number;
     baths: number;
     area: string;
+    lat: number;
+    lng: number;
+    propertyType: string;
 }
 
 export interface FeaturedProperty extends Property {

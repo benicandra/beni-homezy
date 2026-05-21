@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useEffect, useRef } from "react";
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
   ZoomControl,
+  useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -15,11 +16,10 @@ import type { Property } from "@/lib/types";
 import { renderToStaticMarkup } from "react-dom/server";
 import HouseIcon from "@/assets/icons/house-linear.svg";
 
-const markerPositions: [number, number][] = [
-  [40.7128, -74.006],
-  [40.72, -74.01],
-  [40.705, -74.015],
-];
+const DEFAULT_CENTER: [number, number] = [51.5074, -0.1278];
+const DEFAULT_ZOOM = 5;
+const FLY_ZOOM = 15;
+const POPUP_OFFSET = 0.008;
 
 const createCustomIcon = (price: string, isActive: boolean) => {
   const bgColor = isActive
@@ -36,7 +36,7 @@ const createCustomIcon = (price: string, isActive: boolean) => {
   const htmlString = `
     <div class="absolute bottom-0 left-1/2 -translate-x-1/2 mb-1 flex flex-col items-center">
       <div class="flex items-center gap-1.5 px-3 py-2 rounded-[10px] ${bgColor} ${shadow} transition-all duration-200 cursor-pointer">
-        <div class="w-[18px] h-[18px] shrink-0 ${iconColor}">
+        <div class="w-4.5 h-4.5 shrink-0 ${iconColor}">
           ${iconHtml}
         </div>
         <span class="font-bold text-[15px] whitespace-nowrap leading-none pt-0.5">${price}</span>
@@ -56,21 +56,97 @@ const createCustomIcon = (price: string, isActive: boolean) => {
   });
 };
 
-interface MapProps {
-  properties: Property[];
+function calculateCenter(properties: Property[]): [number, number] {
+  if (properties.length === 0) {
+    return DEFAULT_CENTER;
+  }
+
+  const sumLat = properties.reduce((acc, prop) => acc + prop.lat, 0);
+  const sumLng = properties.reduce((acc, prop) => acc + prop.lng, 0);
+
+  return [sumLat / properties.length, sumLng / properties.length];
 }
 
-export default function Map({ properties }: MapProps) {
-  const [activeMarkerId, setActiveMarkerId] = useState<string | null>(null);
+interface MarkerControllerProps {
+  property: Property;
+  isSelected: boolean;
+  onSelect: (id: string | null) => void;
+}
+
+function MarkerController({
+  property,
+  isSelected,
+  onSelect,
+}: MarkerControllerProps) {
+  const map = useMap();
+  const markerRef = useRef<L.Marker>(null);
+
+  useEffect(() => {
+    if (isSelected && markerRef.current) {
+      map.flyTo([property.lat - POPUP_OFFSET, property.lng], FLY_ZOOM, {
+        duration: 1,
+      });
+      markerRef.current.openPopup();
+    }
+  }, [isSelected, map, property.lat, property.lng]);
+
+  return (
+    <Marker
+      ref={markerRef}
+      position={[property.lat, property.lng]}
+      icon={createCustomIcon(property.price, isSelected)}
+      eventHandlers={{
+        click: () => onSelect(property.id),
+      }}
+    >
+      <Popup
+        minWidth={280}
+        maxWidth={304}
+        closeButton={false}
+        className="custom-popup"
+        eventHandlers={{
+          remove: () => onSelect(null),
+        }}
+      >
+        <PropertyCard
+          layout="compact"
+          image={property.image}
+          price={property.price}
+          priceSuffix={property.priceSuffix}
+          title={property.title}
+          address={property.address}
+          beds={property.beds}
+          baths={property.baths}
+          area={property.area}
+          isFeatured={false}
+        />
+      </Popup>
+    </Marker>
+  );
+}
+
+interface MapProps {
+  properties: Property[];
+  selectedPropertyId: string | null;
+  onPropertySelect: (id: string | null) => void;
+}
+
+export default function Map({
+  properties,
+  selectedPropertyId,
+  onPropertySelect,
+}: MapProps) {
+  const center = useMemo(() => calculateCenter(properties), [properties]);
 
   return (
     <div className="w-full h-full relative z-0">
       <MapContainer
-        center={[40.7128, -74.006]}
-        zoom={13}
-        scrollWheelZoom={false}
+        center={center}
+        zoom={DEFAULT_ZOOM}
+        scrollWheelZoom={true}
+        touchZoom={true}
         zoomControl={false}
-        className="w-full h-full min-h-[500px]"
+        className="w-full h-full min-h-125"
       >
         <ZoomControl position="bottomright" />
         <TileLayer
@@ -78,6 +154,9 @@ export default function Map({ properties }: MapProps) {
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
         />
         <style>{`
+          .leaflet-container {
+            touch-action: manipulation;
+          }
           .custom-popup {
             margin-bottom: 0 !important;
             bottom: auto !important;
@@ -95,40 +174,13 @@ export default function Map({ properties }: MapProps) {
             display: none;
           }
         `}</style>
-        {properties.map((property, index) => (
-          <Marker
+        {properties.map((property) => (
+          <MarkerController
             key={property.id}
-            position={markerPositions[index % markerPositions.length]}
-            icon={createCustomIcon(
-              property.price,
-              activeMarkerId === property.id,
-            )}
-            eventHandlers={{
-              click: () => setActiveMarkerId(property.id),
-              popupclose: () => setActiveMarkerId(null),
-            }}
-          >
-            <Popup
-              minWidth={280}
-              maxWidth={304}
-              closeButton={false}
-              className="custom-popup"
-            >
-              <PropertyCard
-                key={property.id}
-                layout="compact"
-                image={property.image}
-                price={property.price}
-                priceSuffix={property.priceSuffix}
-                title={property.title}
-                address={property.address}
-                beds={property.beds}
-                baths={property.baths}
-                area={property.area}
-                isFeatured={false}
-              />
-            </Popup>
-          </Marker>
+            property={property}
+            isSelected={selectedPropertyId === property.id}
+            onSelect={onPropertySelect}
+          />
         ))}
       </MapContainer>
     </div>

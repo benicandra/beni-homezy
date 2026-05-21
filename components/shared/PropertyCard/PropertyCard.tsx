@@ -16,6 +16,7 @@ interface PropertyCardProps {
   baths: number | string;
   area: string;
   layout?: "vertical" | "horizontal" | "compact";
+  onClick?: () => void;
 }
 
 export default function PropertyCard({
@@ -29,17 +30,19 @@ export default function PropertyCard({
   baths,
   area,
   layout = "vertical",
+  onClick,
 }: PropertyCardProps) {
   return (
     <div
+      onClick={onClick}
       className={`bg-white rounded-[15px] border border-lavender-40 shadow-sm flex ${
         layout === "horizontal" ? "flex-col sm:flex-row" : "flex-col"
-      }`}
+      } ${onClick ? "cursor-pointer hover:shadow-md hover:border-lavender transition-all duration-200" : ""}`}
     >
       <div
         className={`relative ${
           layout === "horizontal"
-            ? "h-65 sm:h-auto sm:w-[240px] md:w-[280px] shrink-0"
+            ? "h-65 sm:h-auto sm:w-60 md:w-70 shrink-0"
             : layout === "compact"
               ? "h-48 w-full"
               : "h-65 w-full"
