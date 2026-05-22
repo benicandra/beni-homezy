@@ -4,3 +4,5 @@ export * from "./property";
 export * from "./city";
 export * from "./testimonial";
 export * from "./benefit";
+export * from "./search";
+export * from "./propertyFilters";

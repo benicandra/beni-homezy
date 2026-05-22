@@ -1,47 +1,36 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { properties } from "@/lib/data";
 import {
   extractLocations,
   extractPropertyTypes,
+  extractCategories,
   getPriceRangeByValue,
   PRICE_RANGES,
   DEFAULT_PRICE_RANGE,
+  BEDS_OPTIONS,
+  BATHS_OPTIONS,
+  FLOOR_AREA_RANGES,
+  YEAR_OPTIONS,
 } from "@/lib/data/searchFilters";
 import { getPaginationRange } from "@/lib/utils/pagination";
+import { filterProperties } from "@/lib/utils/filterProperties";
+import { buildFilterParams, buildQueryString } from "@/lib/utils/urlParams";
+import type { MoreFilters } from "@/lib/types";
+import {
+  ITEMS_PER_PAGE,
+  DEFAULT_LOCATION,
+  DEFAULT_PRICE_VALUE,
+  DEFAULT_TYPE,
+  UsePropertyFiltersOptions,
+  UsePropertyFiltersReturn,
+} from "@/lib/types/propertyFilters";
 
-const ITEMS_PER_PAGE = 3;
+export type { UsePropertyFiltersOptions, UsePropertyFiltersReturn };
 
-const DEFAULT_LOCATION = "All";
-const DEFAULT_PRICE_VALUE = "all";
-const DEFAULT_TYPE = "all-types";
-
-export interface UsePropertyFiltersReturn {
-  selectedLocation: string;
-  selectedPriceLabel: string;
-  selectedPropertyType: string;
-  locations: string[];
-  propertyTypes: string[];
-  priceRangeLabels: string[];
-  filteredProperties: typeof properties;
-  paginatedProperties: typeof properties;
-  currentPage: number;
-  totalPages: number;
-  paginationRange: (number | string)[];
-  selectedPropertyId: string | null;
-  handleLocationChange: (value: string) => void;
-  handlePriceChange: (label: string) => void;
-  handleTypeChange: (value: string) => void;
-  handleBrowse: () => void;
-  handlePageChange: (page: number | string) => void;
-  handlePrevious: () => void;
-  handleNext: () => void;
-  handlePropertySelect: (id: string | null) => void;
-}
-
-export function usePropertyFilters(): UsePropertyFiltersReturn {
+export function usePropertyFilters(options?: UsePropertyFiltersOptions): UsePropertyFiltersReturn {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -61,65 +50,54 @@ export function usePropertyFilters(): UsePropertyFiltersReturn {
     Number(searchParams.get("page")) || 1
   );
 
+  const parseMoreFiltersFromUrl = useCallback((): MoreFilters => {
+    return {
+      listingType: (searchParams.get("listingType") as MoreFilters["listingType"]) || "all",
+      category: searchParams.get("category") || "",
+      beds: searchParams.get("beds") || "",
+      baths: searchParams.get("baths") || "",
+      floorArea: searchParams.get("floorArea") || "",
+      minYear: searchParams.get("minYear") || "",
+      maxYear: searchParams.get("maxYear") || "",
+    };
+  }, [searchParams]);
+
+  const [moreFilters, setMoreFilters] = useState<MoreFilters>(parseMoreFiltersFromUrl);
+
   const locations = useMemo(() => extractLocations(properties), []);
   const propertyTypes = useMemo(() => extractPropertyTypes(properties), []);
+  const categories = useMemo(() => extractCategories(properties), []);
   const priceRangeLabels = useMemo(() => PRICE_RANGES.map((r) => r.label), []);
+  const bedsOptions = useMemo(() => BEDS_OPTIONS, []);
+  const bathsOptions = useMemo(() => BATHS_OPTIONS, []);
+  const floorAreaLabels = useMemo(() => FLOOR_AREA_RANGES.map((r) => r.label), []);
+  const yearOptions = useMemo(() => YEAR_OPTIONS, []);
 
   const selectedPriceLabel = useMemo(() => {
     const range = getPriceRangeByValue(selectedPriceValue);
     return range?.label || DEFAULT_PRICE_RANGE.label;
   }, [selectedPriceValue]);
 
-  const updateUrlParams = (params: Record<string, string | number>) => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
+  const updateUrlParams = useCallback(
+    (params: Record<string, string | number>) => {
+      const queryString = buildQueryString(params);
+      const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
+      router.replace(newUrl, { scroll: false });
+    },
+    [pathname, router]
+  );
 
-    Object.entries(params).forEach(([key, value]) => {
-      const isDefault =
-        value === DEFAULT_LOCATION ||
-        value === DEFAULT_PRICE_VALUE ||
-        value === DEFAULT_TYPE ||
-        (key === "page" && value === 1);
-
-      if (isDefault) {
-        newSearchParams.delete(key);
-      } else {
-        newSearchParams.set(key, String(value));
-      }
-    });
-
-    const queryString = newSearchParams.toString();
-    const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
-    router.replace(newUrl, { scroll: false });
-  };
-
-  const applyFilters = (location: string, priceValue: string, type: string) => {
-    const priceRange = getPriceRangeByValue(priceValue);
-
-    return properties.filter((prop) => {
-      const propCity = prop.address.split(",").slice(-2, -1)[0]?.trim().split(" ")[0] || "";
-      const matchLocation = location === DEFAULT_LOCATION || propCity === location;
-
-      const numericPrice = parseInt(prop.price.replace(/[^0-9]/g, ""), 10);
-      const matchPrice =
-        priceRange &&
-        numericPrice >= priceRange.min &&
-        numericPrice < priceRange.max;
-
-      const matchType = type === DEFAULT_TYPE || prop.propertyType === type;
-
-      return matchLocation && matchPrice && matchType;
-    });
-  };
+  const initialFilters = useMemo(() => parseMoreFiltersFromUrl(), [parseMoreFiltersFromUrl]);
 
   const initialFiltered = useMemo(
     () =>
-      applyFilters(
-        searchParams.get("location") || DEFAULT_LOCATION,
-        searchParams.get("price") || DEFAULT_PRICE_VALUE,
-        searchParams.get("type") || DEFAULT_TYPE
-      ),
-    
-    []
+      filterProperties(properties, {
+        location: searchParams.get("location") || DEFAULT_LOCATION,
+        priceValue: searchParams.get("price") || DEFAULT_PRICE_VALUE,
+        type: searchParams.get("type") || DEFAULT_TYPE,
+        filters: initialFilters,
+      }),
+    [initialFilters, searchParams]
   );
 
   const [filteredProperties, setFilteredProperties] = useState(initialFiltered);
@@ -155,18 +133,50 @@ export function usePropertyFilters(): UsePropertyFiltersReturn {
     setSelectedPropertyType(value);
   };
 
-  const handleBrowse = () => {
-    const filtered = applyFilters(selectedLocation, selectedPriceValue, selectedPropertyType);
+  const handleApplyMoreFilters = (filters: MoreFilters) => {
+    setMoreFilters(filters);
+    const filtered = filterProperties(properties, {
+      location: selectedLocation,
+      priceValue: selectedPriceValue,
+      type: selectedPropertyType,
+      filters,
+    });
 
     setFilteredProperties(filtered);
     setCurrentPage(1);
     setSelectedPropertyId(null);
-    updateUrlParams({
-      location: selectedLocation,
-      price: selectedPriceValue,
-      type: selectedPropertyType,
-      page: 1,
-    });
+    updateUrlParams(
+      buildFilterParams(selectedLocation, selectedPriceValue, selectedPropertyType, filters)
+    );
+  };
+
+  const handleBrowse = () => {
+    const params = buildFilterParams(
+      selectedLocation,
+      selectedPriceValue,
+      selectedPropertyType,
+      moreFilters
+    );
+
+    if (options?.navigateToPath) {
+      const queryString = buildQueryString(params);
+      const targetUrl = queryString
+        ? `${options.navigateToPath}?${queryString}`
+        : options.navigateToPath;
+      router.push(targetUrl);
+    } else {
+      const filtered = filterProperties(properties, {
+        location: selectedLocation,
+        priceValue: selectedPriceValue,
+        type: selectedPropertyType,
+        filters: moreFilters,
+      });
+
+      setFilteredProperties(filtered);
+      setCurrentPage(1);
+      setSelectedPropertyId(null);
+      updateUrlParams(params);
+    }
   };
 
   const handlePageChange = (page: number | string) => {
@@ -203,9 +213,15 @@ export function usePropertyFilters(): UsePropertyFiltersReturn {
     selectedLocation,
     selectedPriceLabel,
     selectedPropertyType,
+    moreFilters,
     locations,
     propertyTypes,
+    categories,
     priceRangeLabels,
+    bedsOptions,
+    bathsOptions,
+    floorAreaLabels,
+    yearOptions,
     filteredProperties,
     paginatedProperties,
     currentPage,
@@ -215,6 +231,7 @@ export function usePropertyFilters(): UsePropertyFiltersReturn {
     handleLocationChange,
     handlePriceChange,
     handleTypeChange,
+    handleApplyMoreFilters,
     handleBrowse,
     handlePageChange,
     handlePrevious,

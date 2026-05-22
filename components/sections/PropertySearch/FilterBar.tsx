@@ -1,23 +1,29 @@
 "use client";
 
-import BrowseFilterItem from "@/components/shared/BrowseFilterItem/BrowseFilterItem";
-import { Button } from "@/components/ui";
+import { useState } from "react";
+import FilterBarBase from "@/components/shared/FilterBarBase/FilterBarBase";
+import MoreFilterModal from "./MoreFilterModal";
+import type { MoreFilters } from "@/lib/types";
 
-import LocationIcon from "@/assets/icons/location.svg";
-import DollarIcon from "@/assets/icons/dollar-square.svg";
-import HouseIcon from "@/assets/icons/house.svg";
 import CandleIcon from "@/assets/icons/candle.svg";
 
 interface FilterBarProps {
   selectedLocation: string;
   selectedPrice: string;
   selectedType: string;
+  moreFilters: MoreFilters;
   locations: string[];
   priceRangeLabels: string[];
   propertyTypes: string[];
+  categories: string[];
+  bedsOptions: string[];
+  bathsOptions: string[];
+  floorAreaLabels: string[];
+  yearOptions: string[];
   onLocationChange: (value: string) => void;
   onPriceChange: (label: string) => void;
   onTypeChange: (value: string) => void;
+  onApplyMoreFilters: (filters: MoreFilters) => void;
   onBrowse: () => void;
 }
 
@@ -25,48 +31,66 @@ export default function FilterBar({
   selectedLocation,
   selectedPrice,
   selectedType,
+  moreFilters,
   locations,
   priceRangeLabels,
   propertyTypes,
+  categories,
+  bedsOptions,
+  bathsOptions,
+  floorAreaLabels,
+  yearOptions,
   onLocationChange,
   onPriceChange,
   onTypeChange,
+  onApplyMoreFilters,
   onBrowse,
 }: FilterBarProps) {
+  const [isMoreFilterOpen, setIsMoreFilterOpen] = useState(false);
+  const [modalKey, setModalKey] = useState(0);
+
+  const handleToggleModal = () => {
+    if (!isMoreFilterOpen) {
+      setModalKey((prev) => prev + 1);
+    }
+    setIsMoreFilterOpen(!isMoreFilterOpen);
+  };
+
   return (
     <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-stretch">
-      <div className="grid grid-cols-1 lg:grid-cols-4 items-center w-full bg-white border border-foreground rounded-[15px] p-4 gap-8 lg:p-3 lg:pl-6">
-        <BrowseFilterItem
-          icon={LocationIcon}
-          label="Location"
-          value={selectedLocation}
-          options={locations}
-          onChange={onLocationChange}
-        />
-        <BrowseFilterItem
-          icon={DollarIcon}
-          label="Price"
-          value={selectedPrice}
-          options={priceRangeLabels}
-          onChange={onPriceChange}
-        />
-        <BrowseFilterItem
-          icon={HouseIcon}
-          label="Type of Property"
-          value={selectedType}
-          options={propertyTypes}
-          onChange={onTypeChange}
-        />
-
-        <div className="flex items-center justify-end lg:col-span-1 w-full mt-4 lg:mt-0">
-          <Button className="w-full lg:w-auto px-10" onClick={onBrowse}>
-            Browse
-          </Button>
+      <FilterBarBase
+        location={selectedLocation}
+        price={selectedPrice}
+        propertyType={selectedType}
+        locations={locations}
+        priceRangeLabels={priceRangeLabels}
+        propertyTypes={propertyTypes}
+        onLocationChange={onLocationChange}
+        onPriceChange={onPriceChange}
+        onTypeChange={onTypeChange}
+        onBrowse={onBrowse}
+      />
+      <div className="relative shrink-0">
+        <div
+          className="flex lg:flex-col items-center justify-center gap-3 px-8 py-4 bg-lavender-40 border rounded-[15px] border-foreground cursor-pointer hover:bg-lavender-80 transition-colors shrink-0 h-full"
+          onClick={handleToggleModal}
+        >
+          <CandleIcon className="w-6 h-6" />
+          <p className="text-base font-medium whitespace-nowrap">More Filter</p>
         </div>
-      </div>
-      <div className="flex lg:flex-col items-center justify-center gap-3 px-8 py-4 bg-lavender-40 border rounded-[15px] border-foreground cursor-pointer hover:bg-lavender-80 transition-colors shrink-0 h-full">
-        <CandleIcon className="w-6 h-6" />
-        <p className="text-base font-medium whitespace-nowrap">More Filter</p>
+        {isMoreFilterOpen && (
+          <MoreFilterModal
+            key={modalKey}
+            values={moreFilters}
+            categories={categories}
+            bedsOptions={bedsOptions}
+            bathsOptions={bathsOptions}
+            floorAreaLabels={floorAreaLabels}
+            yearOptions={yearOptions}
+            onApply={onApplyMoreFilters}
+            onClose={() => setIsMoreFilterOpen(false)}
+          />
+        )}
       </div>
     </div>
   );

@@ -22,9 +22,15 @@ export default function PropertySearch() {
     selectedLocation,
     selectedPriceLabel,
     selectedPropertyType,
+    moreFilters,
     locations,
     propertyTypes,
+    categories,
     priceRangeLabels,
+    bedsOptions,
+    bathsOptions,
+    floorAreaLabels,
+    yearOptions,
     filteredProperties,
     paginatedProperties,
     currentPage,
@@ -34,6 +40,7 @@ export default function PropertySearch() {
     handleLocationChange,
     handlePriceChange,
     handleTypeChange,
+    handleApplyMoreFilters,
     handleBrowse,
     handlePageChange,
     handlePrevious,
@@ -53,12 +60,19 @@ export default function PropertySearch() {
         selectedLocation={selectedLocation}
         selectedPrice={selectedPriceLabel}
         selectedType={selectedPropertyType}
+        moreFilters={moreFilters}
         locations={locations}
         priceRangeLabels={priceRangeLabels}
         propertyTypes={propertyTypes}
+        categories={categories}
+        bedsOptions={bedsOptions}
+        bathsOptions={bathsOptions}
+        floorAreaLabels={floorAreaLabels}
+        yearOptions={yearOptions}
         onLocationChange={handleLocationChange}
         onPriceChange={handlePriceChange}
         onTypeChange={handleTypeChange}
+        onApplyMoreFilters={handleApplyMoreFilters}
         onBrowse={handleBrowse}
       />
 

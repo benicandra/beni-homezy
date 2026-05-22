@@ -137,7 +137,7 @@ export default function Featured() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {properties.map((property) => (
+          {properties.slice(0, 3).map((property) => (
             <PropertyCard
               key={property.id}
               image={property.image}

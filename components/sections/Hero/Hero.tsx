@@ -2,14 +2,10 @@
 
 import Image from "next/image";
 
-import { Button } from "@/components/ui";
-import BrowseFilterItem from "@/components/shared/BrowseFilterItem/BrowseFilterItem";
+import FilterBarBase from "@/components/shared/FilterBarBase/FilterBarBase";
 import AgentMiniCard from "@/components/shared/AgentMiniCard/AgentMiniCard";
+import { usePropertyFilters } from "@/lib/hooks/usePropertyFilters";
 import { defaultSocialLinks } from "@/lib/data";
-
-import LocationIcon from "@/assets/icons/location.svg";
-import DollarIcon from "@/assets/icons/dollar-square.svg";
-import HouseIcon from "@/assets/icons/house.svg";
 
 import Agents7 from "@/assets/agents/agents-7.png";
 import Prop3 from "@/assets/properties/properties-3.png";
@@ -18,6 +14,19 @@ import BgText from "@/assets/bg-text.svg";
 import Pattern from "@/assets/pattern.png";
 
 export default function Hero() {
+  const {
+    selectedLocation,
+    selectedPriceLabel,
+    selectedPropertyType,
+    locations,
+    priceRangeLabels,
+    propertyTypes,
+    handleLocationChange,
+    handlePriceChange,
+    handleTypeChange,
+    handleBrowse,
+  } = usePropertyFilters({ navigateToPath: "/properties" });
+
   return (
     <section className="relative flex flex-col gap-10 lg:gap-0 lg:block lg:h-155 pb-25 md:pb-32 pt-8 lg:pt-0">
       <div className="lg:block absolute top-0 bottom-0 lg:-top-20 lg:bottom-0 lg:h-175 left-1/2 w-screen -translate-x-1/2 pointer-events-none z-[-1]">
@@ -49,27 +58,19 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 items-center gap-8 p-5 w-full bg-white lg:bg-transparent border border-foreground rounded-[15px] lg:pt-6">
-          <BrowseFilterItem
-            icon={LocationIcon}
-            label="Location"
-            value="California, US"
-          />
-          <BrowseFilterItem
-            icon={DollarIcon}
-            label="Price"
-            value="$1500-$2500"
-          />
-          <BrowseFilterItem
-            icon={HouseIcon}
-            label="Type of Property"
-            value="Apartment"
-          />
-
-          <div className="flex items-center lg:col-span-1">
-            <Button className="w-full cursor-pointer">Browse</Button>
-          </div>
-        </div>
+        <FilterBarBase
+          location={selectedLocation}
+          price={selectedPriceLabel}
+          propertyType={selectedPropertyType}
+          locations={locations}
+          priceRangeLabels={priceRangeLabels}
+          propertyTypes={propertyTypes}
+          onLocationChange={handleLocationChange}
+          onPriceChange={handlePriceChange}
+          onTypeChange={handleTypeChange}
+          onBrowse={handleBrowse}
+          className="lg:bg-transparent lg:pt-6"
+        />
       </div>
 
       <div className="relative w-full flex justify-center mt-12 lg:mt-0 lg:absolute right-13 lg:left-173.25 lg:top-0 lg:w-128.5 lg:h-full lg:block">

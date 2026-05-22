@@ -11,9 +11,12 @@ export interface Property {
     beds: number;
     baths: number;
     area: string;
+    floorAreaM2?: number;
     lat: number;
     lng: number;
     propertyType: string;
+    listingType?: "sale" | "rent";
+    yearBuilt?: number;
 }
 
 export interface FeaturedProperty extends Property {
