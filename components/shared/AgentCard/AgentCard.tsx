@@ -1,21 +1,16 @@
 import Image from "next/image";
-import type { ComponentType, SVGProps } from "react";
 import type { StaticImageData } from "next/image";
 
 import SocialIconLink from "@/components/shared/SocialIconLink/SocialIconLink";
-
-interface AgentSocialLink {
-  href: string;
-  label: string;
-  icon: ComponentType<SVGProps<SVGSVGElement>>;
-}
+import { cn } from "@/lib/utils";
+import type { SocialLink } from "@/lib/types";
 
 interface AgentCardProps {
   name: string;
   role: string;
   image: StaticImageData;
   imageAlt?: string;
-  socialLinks: AgentSocialLink[];
+  socialLinks: SocialLink[];
   className?: string;
 }
 
@@ -25,11 +20,14 @@ export default function AgentCard({
   image,
   imageAlt,
   socialLinks,
-  className = "",
+  className,
 }: AgentCardProps) {
   return (
     <div
-      className={`flex flex-row md:flex-col xl:flex-row justify-between border border-lavender-40 rounded-[15px] p-6 bg-white z-10 ${className}`}
+      className={cn(
+        "flex flex-row md:flex-col xl:flex-row justify-between border border-lavender-40 rounded-[15px] p-6 bg-white z-10",
+        className
+      )}
     >
       <div className="flex flex-col gap-4 md:items-center xl:items-start">
         <div className="gap-px md:text-center xl:text-left">

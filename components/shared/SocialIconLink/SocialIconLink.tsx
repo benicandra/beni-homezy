@@ -1,6 +1,12 @@
-import type { ComponentType, AnchorHTMLAttributes, SVGProps } from "react";
+import type {
+  ComponentType,
+  AnchorHTMLAttributes,
+  SVGProps,
+} from "react";
+import { cn } from "@/lib/utils";
 
-interface SocialIconLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+interface SocialIconLinkProps
+  extends AnchorHTMLAttributes<HTMLAnchorElement> {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
   label: string;
   iconClassName?: string;
@@ -9,7 +15,7 @@ interface SocialIconLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 export default function SocialIconLink({
   icon: Icon,
   label,
-  className = "",
+  className,
   iconClassName = "size-5 text-white",
   href = "#",
   ...props
@@ -23,7 +29,10 @@ export default function SocialIconLink({
       aria-label={label}
       target={isExternalLink ? "_blank" : props.target}
       rel={isExternalLink ? "noopener noreferrer" : props.rel}
-      className={`flex items-center justify-center rounded-full hover:opacity-80 transition-opacity ${className}`}
+      className={cn(
+        "flex items-center justify-center rounded-full hover:opacity-80 transition-opacity",
+        className
+      )}
     >
       <Icon className={iconClassName} />
     </a>

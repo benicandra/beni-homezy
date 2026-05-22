@@ -2,6 +2,7 @@
 
 import BrowseFilterItem from "@/components/shared/BrowseFilterItem/BrowseFilterItem";
 import { Button } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 import LocationIcon from "@/assets/icons/location.svg";
 import DollarIcon from "@/assets/icons/dollar-square.svg";
@@ -33,11 +34,16 @@ export default function FilterBarBase({
   onPriceChange,
   onTypeChange,
   onBrowse,
-  className = "",
-  browseButtonClassName = "",
+  className,
+  browseButtonClassName,
 }: FilterBarBaseProps) {
   return (
-    <div className={`grid grid-cols-1 lg:grid-cols-4 items-center w-full bg-white border border-foreground rounded-[15px] p-4 gap-8 lg:p-3 lg:pl-6 ${className}`}>
+    <div
+      className={cn(
+        "grid grid-cols-1 lg:grid-cols-4 items-center w-full bg-white border border-foreground rounded-[15px] p-4 gap-8 lg:p-3 lg:pl-6",
+        className
+      )}
+    >
       <BrowseFilterItem
         icon={LocationIcon}
         label="Location"
@@ -62,7 +68,10 @@ export default function FilterBarBase({
 
       <div className="flex items-center justify-end lg:col-span-1 w-full mt-4 lg:mt-0">
         <Button
-          className={`w-full lg:w-auto px-10 cursor-pointer ${browseButtonClassName}`}
+          className={cn(
+            "w-full lg:w-auto px-10 cursor-pointer",
+            browseButtonClassName
+          )}
           onClick={onBrowse}
         >
           Browse

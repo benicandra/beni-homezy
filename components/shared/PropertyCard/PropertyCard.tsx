@@ -1,4 +1,5 @@
-import Image, { StaticImageData } from "next/image";
+import Image, { type StaticImageData } from "next/image";
+import { cn } from "@/lib/utils";
 
 import FeaturedIcon from "@/assets/icons/featured.svg";
 import BedIcon from "@/assets/icons/bed.svg";
@@ -17,6 +18,7 @@ interface PropertyCardProps {
   area: string;
   layout?: "vertical" | "horizontal" | "compact";
   onClick?: () => void;
+  className?: string;
 }
 
 export default function PropertyCard({
@@ -31,29 +33,64 @@ export default function PropertyCard({
   area,
   layout = "vertical",
   onClick,
+  className,
 }: PropertyCardProps) {
+  const layoutStyles = {
+    imageHeight:
+      layout === "horizontal"
+        ? "h-65 sm:h-auto sm:w-60 md:w-70 shrink-0"
+        : layout === "compact"
+          ? "h-48 w-full"
+          : "h-65 w-full",
+    imageRounded:
+      layout === "horizontal"
+        ? "rounded-t-[14px] sm:rounded-tr-none sm:rounded-l-[14px]"
+        : "rounded-t-[14px]",
+    bodyPadding:
+      layout === "horizontal"
+        ? "gap-3 p-5 sm:p-6"
+        : layout === "compact"
+          ? "gap-3 p-5"
+          : "gap-4 py-8 px-6",
+    titleSize:
+      layout === "horizontal"
+        ? "text-xl"
+        : layout === "compact"
+          ? "text-[19px]"
+          : "text-[22px]",
+    priceSize:
+      layout === "horizontal"
+        ? "text-[28px]"
+        : layout === "compact"
+          ? "text-2xl"
+          : "text-[32px]",
+    featuresGap:
+      layout === "horizontal"
+        ? "pt-4 gap-4"
+        : layout === "compact"
+          ? "pt-4 gap-2"
+          : "pt-6 gap-3 lg:gap-3 xl:gap-6",
+    iconSize:
+      layout === "horizontal" ? "w-5 h-5" : "lg:w-5 xl:w-6 lg:h-5 xl:h-6",
+  };
+
   return (
     <div
       onClick={onClick}
-      className={`bg-white rounded-[15px] border border-lavender-40 shadow-sm flex ${
-        layout === "horizontal" ? "flex-col sm:flex-row" : "flex-col"
-      } ${onClick ? "cursor-pointer hover:shadow-md hover:border-lavender transition-all duration-200" : ""}`}
+      className={cn(
+        "bg-white rounded-[15px] border border-lavender-40 shadow-sm flex",
+        layout === "horizontal" ? "flex-col sm:flex-row" : "flex-col",
+        onClick &&
+          "cursor-pointer hover:shadow-md hover:border-lavender transition-all duration-200",
+        className
+      )}
     >
-      <div
-        className={`relative ${
-          layout === "horizontal"
-            ? "h-65 sm:h-auto sm:w-60 md:w-70 shrink-0"
-            : layout === "compact"
-              ? "h-48 w-full"
-              : "h-65 w-full"
-        }`}
-      >
+      <div className={cn("relative", layoutStyles.imageHeight)}>
         <div
-          className={`absolute inset-0 overflow-hidden ${
-            layout === "horizontal"
-              ? "rounded-t-[14px] sm:rounded-tr-none sm:rounded-l-[14px]"
-              : "rounded-t-[14px]"
-          }`}
+          className={cn(
+            "absolute inset-0 overflow-hidden",
+            layoutStyles.imageRounded
+          )}
         >
           <Image
             src={image}
@@ -68,21 +105,24 @@ export default function PropertyCard({
         )}
       </div>
       <div
-        className={`flex-1 flex flex-col ${
-          layout === "horizontal"
-            ? "gap-3 p-5 sm:p-6"
-            : layout === "compact"
-              ? "gap-3 p-5"
-              : "gap-4 py-8 px-6"
-        }`}
+        className={cn(
+          "flex-1 flex flex-col",
+          layoutStyles.bodyPadding
+        )}
       >
         <div
-          className={`flex flex-col ${layout === "horizontal" ? "gap-2" : layout === "compact" ? "gap-2" : "gap-4"}`}
+          className={cn(
+            "flex flex-col",
+            layout === "horizontal" || layout === "compact" ? "gap-2" : "gap-4"
+          )}
         >
           <div className="flex flex-col gap-1">
             <div className="flex items-baseline gap-1">
               <span
-                className={`font-bold text-foreground ${layout === "horizontal" ? "text-[28px]" : layout === "compact" ? "text-2xl" : "text-[32px]"}`}
+                className={cn(
+                  "font-bold text-foreground",
+                  layoutStyles.priceSize
+                )}
               >
                 {price}
               </span>
@@ -93,7 +133,10 @@ export default function PropertyCard({
               )}
             </div>
             <h4
-              className={`leading-tight font-semibold text-foreground ${layout === "horizontal" ? "text-xl" : layout === "compact" ? "text-[19px]" : "text-[22px]"}`}
+              className={cn(
+                "leading-tight font-semibold text-foreground",
+                layoutStyles.titleSize
+              )}
             >
               {title}
             </h4>
@@ -106,25 +149,19 @@ export default function PropertyCard({
         </div>
 
         <div
-          className={`flex flex-row lg:flex-col xl:flex-row items-center lg:items-start xl:items-center border-t border-[#F2F2F2] mt-auto ${layout === "horizontal" ? "pt-4 gap-4" : layout === "compact" ? "pt-4 gap-2" : "pt-6 gap-3 lg:gap-3 xl:gap-6"}`}
+          className={cn(
+            "flex flex-row lg:flex-col xl:flex-row items-center lg:items-start xl:items-center border-t border-[#F2F2F2] mt-auto",
+            layoutStyles.featuresGap
+          )}
         >
           <div className="flex items-center gap-2 text-sm text-foreground font-medium whitespace-nowrap">
-            <BedIcon
-              className={`w-5 h-5 ${layout === "horizontal" ? "" : "lg:w-5 xl:w-6 lg:h-5 xl:h-6"}`}
-            />{" "}
-            {beds} Beds
+            <BedIcon className={layoutStyles.iconSize} /> {beds} Beds
           </div>
           <div className="flex items-center gap-2 text-sm text-foreground font-medium whitespace-nowrap">
-            <BathIcon
-              className={`w-5 h-5 ${layout === "horizontal" ? "" : "lg:w-5 xl:w-6 lg:h-5 xl:h-6"}`}
-            />{" "}
-            {baths} Baths
+            <BathIcon className={layoutStyles.iconSize} /> {baths} Baths
           </div>
           <div className="flex items-center gap-2 text-sm text-foreground font-medium whitespace-nowrap">
-            <AreaIcon
-              className={`w-5 h-5 ${layout === "horizontal" ? "" : "lg:w-5 xl:w-6 lg:h-5 xl:h-6"}`}
-            />{" "}
-            {area}
+            <AreaIcon className={layoutStyles.iconSize} /> {area}
           </div>
         </div>
       </div>

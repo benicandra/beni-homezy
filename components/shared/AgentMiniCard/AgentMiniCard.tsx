@@ -1,21 +1,14 @@
-import Image from "next/image";
-import type { ComponentType, SVGProps } from "react";
-import type { StaticImageData } from "next/image";
-
+import Image, { type StaticImageData } from "next/image";
 import SocialIconLink from "@/components/shared/SocialIconLink/SocialIconLink";
-
-interface AgentSocialLink {
-  href: string;
-  label: string;
-  icon: ComponentType<SVGProps<SVGSVGElement>>;
-}
+import { cn } from "@/lib/utils";
+import type { SocialLink } from "@/lib/types";
 
 interface AgentMiniCardProps {
   name: string;
   role: string;
   image: StaticImageData;
   imageAlt?: string;
-  socialLinks: AgentSocialLink[];
+  socialLinks: SocialLink[];
   className?: string;
   socialLinkClassName?: string;
   socialIconClassName?: string;
@@ -27,13 +20,16 @@ export default function AgentMiniCard({
   image,
   imageAlt,
   socialLinks,
-  className = "",
+  className,
   socialLinkClassName = "w-[16.5px] h-[16.5px] bg-[#686A79]",
   socialIconClassName = "size-5 text-white",
 }: AgentMiniCardProps) {
   return (
     <div
-      className={`flex flex-row justify-between gap-2 border-2 rounded-4xl p-[16.5px] bg-white z-10 ${className}`}
+      className={cn(
+        "flex flex-row justify-between gap-2 border-2 rounded-4xl p-[16.5px] bg-white z-10",
+        className
+      )}
     >
       <div className="flex flex-col gap-2.75">
         <div className="gap-[1.38px]">
