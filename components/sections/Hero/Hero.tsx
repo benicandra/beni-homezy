@@ -37,6 +37,7 @@ export default function Hero() {
                 src={Pattern}
                 alt="Pattern"
                 className="w-170 md:w-200 lg:w-174 h-auto max-w-none"
+                priority
               />
             </div>
           </div>

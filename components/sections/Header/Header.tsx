@@ -27,7 +27,7 @@ function PagesDropdown({ item }: { item: { label: string; href: string } }) {
         <ArrowDownIcon
           className={cn(
             "w-5 h-5 transition-transform duration-300",
-            isOpen && "rotate-180"
+            isOpen && "rotate-180",
           )}
         />
       </button>
@@ -38,6 +38,7 @@ function PagesDropdown({ item }: { item: { label: string; href: string } }) {
             <Link
               key={page.href}
               href={page.href}
+              prefetch={false}
               onClick={() => setIsOpen(false)}
               className="block px-4 py-2.5 text-base font-medium text-foreground hover:bg-lavender-20 hover:text-lavender transition-colors rounded-[10px]"
             >
@@ -50,7 +51,13 @@ function PagesDropdown({ item }: { item: { label: string; href: string } }) {
   );
 }
 
-function MobilePagesDropdown({ item, onClose }: { item: { label: string; href: string }; onClose: () => void }) {
+function MobilePagesDropdown({
+  item,
+  onClose,
+}: {
+  item: { label: string; href: string };
+  onClose: () => void;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -65,7 +72,7 @@ function MobilePagesDropdown({ item, onClose }: { item: { label: string; href: s
         <ArrowDownIcon
           className={cn(
             "w-5 h-5 transition-transform duration-300",
-            isOpen && "rotate-180"
+            isOpen && "rotate-180",
           )}
         />
       </button>
@@ -76,6 +83,7 @@ function MobilePagesDropdown({ item, onClose }: { item: { label: string; href: s
             <Link
               key={page.href}
               href={page.href}
+              prefetch={false}
               onClick={onClose}
               className="block px-4 py-2 text-sm font-medium text-foreground hover:bg-lavender-20 hover:text-lavender transition-colors rounded-[10px]"
             >
@@ -90,7 +98,9 @@ function MobilePagesDropdown({ item, onClose }: { item: { label: string; href: s
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const mobileMenuRef = useOutsideClick<HTMLDivElement>(() => setIsMobileMenuOpen(false));
+  const mobileMenuRef = useOutsideClick<HTMLDivElement>(() =>
+    setIsMobileMenuOpen(false),
+  );
 
   return (
     <header className="bg-background sticky top-0 z-50">
@@ -115,6 +125,7 @@ export default function Header() {
               <li key={item.label}>
                 <Link
                   href={item.href}
+                  prefetch={false}
                   className="font-body font-normal text-lg text-foreground transition-colors hover:text-primary"
                 >
                   {item.label}
@@ -130,8 +141,8 @@ export default function Header() {
           </Button>
         </div>
 
-        <button 
-          className="md:hidden p-2 transition-colors hover:text-primary" 
+        <button
+          className="md:hidden p-2 transition-colors hover:text-primary"
           aria-label="Open menu"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
@@ -140,15 +151,22 @@ export default function Header() {
       </Container>
 
       {isMobileMenuOpen && (
-        <div ref={mobileMenuRef} className="absolute top-full left-4 right-4 mt-2 bg-white border border-lavender-40 rounded-[15px] shadow-xl z-50 p-2 md:hidden">
+        <div
+          ref={mobileMenuRef}
+          className="absolute top-full left-4 right-4 mt-2 bg-white border border-lavender-40 rounded-[15px] shadow-xl z-50 p-2 md:hidden"
+        >
           <div className="flex flex-col gap-1 max-h-[75vh] overflow-y-auto">
             {headerNavItems.map((item) => (
               <div key={item.label}>
                 {item.label === "Pages" ? (
-                  <MobilePagesDropdown item={item} onClose={() => setIsMobileMenuOpen(false)} />
+                  <MobilePagesDropdown
+                    item={item}
+                    onClose={() => setIsMobileMenuOpen(false)}
+                  />
                 ) : (
                   <Link
                     href={item.href}
+                    prefetch={false}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="block px-4 py-3 text-base font-medium text-foreground hover:bg-lavender-20 hover:text-lavender transition-colors rounded-[10px]"
                   >
@@ -158,7 +176,11 @@ export default function Header() {
               </div>
             ))}
             <div className="mt-2 pt-3 border-t border-lavender-40 px-2 pb-1">
-              <Button variant="outline" className="w-full justify-center" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button
+                variant="outline"
+                className="w-full justify-center"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 Contact Us
               </Button>
             </div>
