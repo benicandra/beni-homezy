@@ -35,6 +35,7 @@ export default function Featured() {
                 fill
                 sizes="(min-width: 1024px) 500px, calc(100vw - 48px)"
                 className="object-cover"
+                priority
               />
               <div className="absolute inset-0 bg-carnation opacity-20"></div>
             </div>

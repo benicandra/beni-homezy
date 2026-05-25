@@ -1,9 +1,9 @@
 import type { FeaturedProperty, Property } from "@/lib/types";
 
 import Prop20 from "@/assets/properties/properties-4.webp";
-import PropFeat1 from "@/assets/properties/properties-1-feat.png";
-import PropFeat2 from "@/assets/properties/properties-2-feat.png";
-import PropFeat3 from "@/assets/properties/properties-3-feat.png";
+import PropFeat1 from "@/assets/properties/properties-1-feat.webp";
+import PropFeat2 from "@/assets/properties/properties-2-feat.webp";
+import PropFeat3 from "@/assets/properties/properties-3-feat.webp";
 import Prop1 from "@/assets/properties/prop-1.webp";
 import Prop2 from "@/assets/properties/prop-2.webp";
 import Prop3 from "@/assets/properties/prop-3.webp";

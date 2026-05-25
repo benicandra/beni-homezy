@@ -8,10 +8,10 @@ import { usePropertyFilters } from "@/lib/hooks/usePropertyFilters";
 import { defaultSocialLinks } from "@/lib/data";
 
 import Agents7 from "@/assets/agents/agents-7.png";
-import Prop3 from "@/assets/properties/properties-3.png";
-import Prop1 from "@/assets/properties/properties-1.png";
+import Prop3 from "@/assets/properties/properties-3.webp";
+import Prop1 from "@/assets/properties/properties-1.webp";
 import BgText from "@/assets/bg-text.svg";
-import Pattern from "@/assets/pattern.png";
+import Pattern from "@/assets/pattern.webp";
 
 export default function Hero() {
   const {
@@ -97,6 +97,7 @@ export default function Hero() {
                 fill
                 sizes="248px"
                 className="object-cover"
+                priority
               />
             </div>
             <div className="absolute bottom-0 right-0 w-full h-26.5 flex items-center justify-center px-6 pt-5 pb-1">
@@ -108,7 +109,7 @@ export default function Hero() {
           </div>
 
           <div className="absolute top-47 left-66.5 w-62 h-85 border-2 rounded-[40px] overflow-hidden">
-            <Image src={Prop1} alt="Illustration 3" className="object-cover" />
+            <Image src={Prop1} alt="Illustration 3" className="object-cover" priority />
           </div>
         </div>
       </div>

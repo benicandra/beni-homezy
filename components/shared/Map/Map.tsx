@@ -21,7 +21,13 @@ const DEFAULT_ZOOM = 5;
 const FLY_ZOOM = 15;
 const POPUP_OFFSET = 0.008;
 
+const iconCache = new globalThis.Map<string, ReturnType<typeof L.divIcon>>();
+
 const createCustomIcon = (price: string, isActive: boolean) => {
+  const cacheKey = `${price}-${isActive}`;
+  const cached = iconCache.get(cacheKey);
+  if (cached) return cached;
+
   const bgColor = isActive
     ? "bg-[#1E1E24] text-white"
     : "bg-white text-foreground";
@@ -47,13 +53,16 @@ const createCustomIcon = (price: string, isActive: boolean) => {
     </div>
   `;
 
-  return L.divIcon({
+  const icon = L.divIcon({
     className: "custom-div-icon",
     html: htmlString,
     iconSize: [0, 0],
     iconAnchor: [0, 0],
     popupAnchor: [0, 0],
   });
+
+  iconCache.set(cacheKey, icon);
+  return icon;
 };
 
 function calculateCenter(properties: Property[]): [number, number] {

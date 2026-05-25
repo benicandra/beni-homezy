@@ -1,23 +1,43 @@
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
+
 import Hero from "@/components/sections/Hero/Hero";
 import Featured from "@/components/sections/Featured/Featured";
-import Benefits from "@/components/sections/Benefits/Benefits";
-import Categories from "@/components/sections/Categories/Categories";
-import Cities from "@/components/sections/Cities/Cities";
-import Agents from "@/components/sections/Agents/Agents";
-import Testimonials from "@/components/sections/Testimonial/Testimonials";
-import CTA from "@/components/sections/CTA/CTA";
+
+const Benefits = dynamic(() => import("@/components/sections/Benefits/Benefits"));
+const Categories = dynamic(() => import("@/components/sections/Categories/Categories"));
+const Cities = dynamic(() => import("@/components/sections/Cities/Cities"));
+const Agents = dynamic(() => import("@/components/sections/Agents/Agents"));
+const Testimonials = dynamic(() => import("@/components/sections/Testimonial/Testimonials"));
+const CTA = dynamic(() => import("@/components/sections/CTA/CTA"));
+
+function SectionSkeleton() {
+  return <div className="min-h-60 animate-pulse bg-lavender-20 rounded-[15px]" />;
+}
 
 export default function Home() {
   return (
     <div className="flex flex-col gap-20 lg:gap-40">
       <Hero />
       <Featured />
-      <Benefits />
-      <Categories />
-      <Cities />
-      <Agents />
-      <Testimonials />
-      <CTA />
+      <Suspense fallback={<SectionSkeleton />}>
+        <Benefits />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Categories />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Cities />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Agents />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Testimonials />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <CTA />
+      </Suspense>
     </div>
   );
 }
