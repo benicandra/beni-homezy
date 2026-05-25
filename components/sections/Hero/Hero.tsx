@@ -43,34 +43,36 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="w-full lg:w-190.75 grid gap-8 lg:gap-12 relative z-10">
-        <div className="w-full lg:w-152 space-y-4 text-left">
+      <div className="w-full lg:w-[clamp(500px,55vw,763px)] xl:w-190.75 grid gap-8 lg:gap-12 relative z-10 transition-all duration-300">
+        <div className="w-full xl:w-152 space-y-4 text-left">
           <div>
-            <h1 className="font-semibold text-[42px] leading-tight md:text-6xl lg:text-7xl lg:leading-22 tracking-[-4%]">
+            <h1 className="font-semibold text-[42px] leading-tight md:text-6xl lg:text-[clamp(2.75rem,4.5vw,4.5rem)] lg:leading-tight xl:text-7xl xl:leading-22 tracking-[-4%]">
               We help people to realize their dream property
             </h1>
           </div>
-          <div className="w-full lg:w-114.25 mx-auto lg:mx-0">
-            <p className="font-light text-xl lg:leading-7.5 text-[#334561]">
+          <div className="w-full xl:w-114.25 mx-auto lg:mx-0">
+            <p className="font-light text-xl lg:text-[clamp(1.125rem,1.5vw,1.25rem)] lg:leading-relaxed xl:text-xl xl:leading-7.5 text-[#334561]">
               We are creative people who provide the best way to you who want to
               have a new comfortable and suitable place to live
             </p>
           </div>
         </div>
 
-        <FilterBarBase
-          location={selectedLocation}
-          price={selectedPriceLabel}
-          propertyType={selectedPropertyType}
-          locations={locations}
-          priceRangeLabels={priceRangeLabels}
-          propertyTypes={propertyTypes}
-          onLocationChange={handleLocationChange}
-          onPriceChange={handlePriceChange}
-          onTypeChange={handleTypeChange}
-          onBrowse={handleBrowse}
-          className="lg:bg-transparent lg:pt-6"
-        />
+        <div className="lg:origin-top-left lg:scale-[0.75] xl:scale-100 lg:w-[133.33%] xl:w-full transition-all duration-300">
+          <FilterBarBase
+            location={selectedLocation}
+            price={selectedPriceLabel}
+            propertyType={selectedPropertyType}
+            locations={locations}
+            priceRangeLabels={priceRangeLabels}
+            propertyTypes={propertyTypes}
+            onLocationChange={handleLocationChange}
+            onPriceChange={handlePriceChange}
+            onTypeChange={handleTypeChange}
+            onBrowse={handleBrowse}
+            className="lg:bg-transparent lg:pt-6"
+          />
+        </div>
       </div>
 
       <div className="relative w-full flex justify-center mt-12 lg:mt-0 lg:absolute right-13 lg:left-173.25 lg:top-0 lg:w-128.5 lg:h-full lg:block">

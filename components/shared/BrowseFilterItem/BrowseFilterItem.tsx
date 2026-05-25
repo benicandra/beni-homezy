@@ -3,7 +3,6 @@
 import { useState, useId, type ComponentType, type SVGProps } from "react";
 import { cn } from "@/lib/utils";
 import { useOutsideClick } from "@/lib/hooks";
-import ArrowDownIcon from "@/assets/icons/arrow-down.svg";
 
 interface BrowseFilterItemProps {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
@@ -104,14 +103,7 @@ export default function BrowseFilterItem({
           <p className="text-sm font-light">{label}</p>
           <p className="text-base font-bold truncate">{value}</p>
         </div>
-        {isInteractive && (
-          <ArrowDownIcon
-            className={cn(
-              "w-4 h-4 text-[#868893] transition-transform duration-200 shrink-0",
-              isOpen && "rotate-180"
-            )}
-          />
-        )}
+
       </button>
 
       {isOpen && isInteractive && (
