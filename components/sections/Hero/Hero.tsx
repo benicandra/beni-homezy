@@ -44,7 +44,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="w-full lg:w-[clamp(500px,55vw,763px)] xl:w-190.75 grid gap-8 lg:gap-12 relative z-10 transition-all duration-300">
+      <div className="w-full lg:w-[clamp(400px,52%,763px)] xl:w-190.75 grid gap-8 lg:gap-12 relative z-10 transition-all duration-300">
         <div className="w-full xl:w-152 space-y-4 text-left">
           <div>
             <h1 className="font-semibold text-[42px] leading-tight md:text-6xl lg:text-[clamp(2.75rem,4.5vw,4.5rem)] lg:leading-tight xl:text-7xl xl:leading-22 tracking-[-4%]">
@@ -76,40 +76,47 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative w-full flex justify-center mt-12 lg:mt-0 lg:absolute right-13 lg:left-173.25 lg:top-0 lg:w-128.5 lg:h-full lg:block">
-        <div className="relative w-128.5 h-132 scale-[0.70] sm:scale-75 md:scale-90 lg:scale-100 origin-top lg:origin-top-left -mb-45 sm:-mb-20 md:mb-0 lg:mb-0">
+      <div className="relative w-full flex justify-center mt-12 lg:mt-0 lg:absolute lg:top-0 lg:right-0 lg:w-[45%] lg:h-full lg:block">
+        <div className="relative w-full max-w-[514px] aspect-[514/528]">
           <AgentMiniCard
-            className="absolute top-12.5 left-52.25 w-63.25"
+            className="absolute top-[9.5%] left-[40.7%] w-[49.2%]"
             name="Edwin Martins"
             role="Property Advisor"
             image={Agents7}
             imageAlt="Edwin Martins"
             socialLinks={defaultSocialLinks}
-            socialLinkClassName="w-[16.5px] h-[16.5px] bg-[#686A79]"
-            socialIconClassName="size-5 [&>path:first-child]:fill-[#686A79] [&>path:last-child]:fill-white"
+            socialLinkClassName="w-3 h-3 md:w-[16.5px] md:h-[16.5px] bg-[#686A79]"
+            socialIconClassName="size-3 md:size-5 [&>path:first-child]:fill-[#686A79] [&>path:last-child]:fill-white"
           />
 
-          <div className="absolute top-0 left-0 w-62 h-90.5">
-            <div className="relative h-[264.8px] border-2 rounded-tl-[40px] rounded-tr-[40px] rounded-br-4xl overflow-hidden">
+          <div className="absolute top-0 left-0 w-[48.2%] h-[70%]">
+            <div className="relative h-[70%] border-2 rounded-t-[clamp(26px,3vw,40px)] overflow-hidden">
               <Image
                 src={Prop3}
                 alt="Illustration 2"
                 fill
-                sizes="248px"
+                sizes="(max-width: 640px) 180px, (max-width: 1024px) 230px, 248px"
                 className="object-cover"
                 priority
               />
             </div>
-            <div className="absolute bottom-0 right-0 w-full h-26.5 flex items-center justify-center px-6 pt-5 pb-1">
+            <div className="relative h-[30%] rounded-b-[clamp(26px,3vw,40px)] overflow-hidden flex items-center justify-center px-[6%]">
               <BgText className="absolute inset-0 w-full h-full" />
-              <p className="relative z-10 text-white font-light text-sm leading-snug text-center max-w-50">
+              <p className="relative z-10 text-white font-light text-[clamp(9px,1.1vw,14px)] leading-snug text-center w-[80%]">
                 We provide our best properties to give great services possible
               </p>
             </div>
           </div>
 
-          <div className="absolute top-47 left-66.5 w-62 h-85 border-2 rounded-[40px] overflow-hidden">
-            <Image src={Prop1} alt="Illustration 3" className="object-cover" priority />
+          <div className="absolute top-[35.6%] left-[51.7%] w-[48.2%] h-[64.4%] border-2 rounded-[clamp(26px,3vw,40px)] overflow-hidden">
+            <Image
+              src={Prop1}
+              alt="Illustration 3"
+              fill
+              sizes="(max-width: 640px) 180px, (max-width: 1024px) 230px, 248px"
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
       </div>

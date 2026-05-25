@@ -21,29 +21,32 @@ export default function AgentMiniCard({
   imageAlt,
   socialLinks,
   className,
-  socialLinkClassName = "w-[16.5px] h-[16.5px] bg-[#686A79]",
-  socialIconClassName = "size-5 text-white",
+  socialLinkClassName,
+  socialIconClassName = "size-3 md:size-5 text-white",
 }: AgentMiniCardProps) {
   return (
     <div
       className={cn(
-        "flex flex-row justify-between gap-2 border-2 rounded-4xl p-[16.5px] bg-white z-10",
-        className
+        "flex flex-row justify-between gap-1.5 md:gap-2 border-2 rounded-2xl md:rounded-4xl p-2.5 md:p-[16.5px] bg-white z-10",
+        className,
       )}
     >
-      <div className="flex flex-col gap-2.75">
-        <div className="gap-[1.38px]">
-          <p className="text-base font-bold">{name}</p>
-          <p className="text-xs font-normal">{role}</p>
+      <div className="flex flex-col gap-1 md:gap-2.75 min-w-0">
+        <div className="gap-0 md:gap-[1.38px]">
+          <p className="text-xs md:text-base font-bold truncate">{name}</p>
+          <p className="text-[10px] md:text-xs font-normal truncate">{role}</p>
         </div>
-        <div className="flex gap-[8.25px]">
+        <div className="flex gap-1 md:gap-[8.25px]">
           {socialLinks.map((link) => (
             <SocialIconLink
               key={link.label}
               href={link.href}
               label={link.label}
               icon={link.icon}
-              className={socialLinkClassName}
+              className={cn(
+                "w-3 h-3 md:w-[16.5px] md:h-[16.5px] bg-[#686A79]",
+                socialLinkClassName,
+              )}
               iconClassName={socialIconClassName}
             />
           ))}
@@ -52,9 +55,10 @@ export default function AgentMiniCard({
       <Image
         src={image}
         alt={imageAlt ?? name}
-        width={74.25}
-        height={74.25}
-        className="bg-lavender-40 rounded-[10.31px]"
+        width={40}
+        height={40}
+        sizes="40px"
+        className="bg-lavender-40 rounded-lg md:rounded-[10.31px] w-10 h-10 md:w-[74.25px] md:h-[74.25px] shrink-0"
       />
     </div>
   );
