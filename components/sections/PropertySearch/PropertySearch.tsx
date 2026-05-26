@@ -16,7 +16,7 @@ const Map = dynamic(() => import("@/components/shared/Map/Map"), {
 });
 
 export default function PropertySearch() {
-  const [viewMode, setViewMode] = useState<"list" | "grid">("list");
+  const [viewMode, setViewMode] = useState<"list" | "grid">("grid");
 
   const {
     selectedLocation,
@@ -76,7 +76,13 @@ export default function PropertySearch() {
         onBrowse={handleBrowse}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div
+        className={
+          viewMode === "grid"
+            ? "grid grid-cols-1 lg:grid-cols-2 gap-10"
+            : "flex flex-col gap-10"
+        }
+      >
         <div className="w-full h-125 lg:h-full lg:min-h-150 rounded-[15px] overflow-hidden border border-[#E5E5E5]">
           <Map
             properties={filteredProperties}
@@ -93,13 +99,7 @@ export default function PropertySearch() {
             <ViewModeToggle viewMode={viewMode} onChange={setViewMode} />
           </div>
 
-          <div
-            className={
-              viewMode === "grid"
-                ? "grid grid-cols-1 xl:grid-cols-2 gap-6"
-                : "flex flex-col gap-6"
-            }
-          >
+          <div className="flex flex-col gap-6">
             {paginatedProperties.map((property) => (
               <PropertyCard
                 key={property.id}
@@ -112,7 +112,7 @@ export default function PropertySearch() {
                 baths={property.baths}
                 area={property.area}
                 isFeatured={false}
-                layout={viewMode === "list" ? "horizontal" : "vertical"}
+                layout="horizontal"
                 onClick={() => handlePropertySelect(property.id)}
               />
             ))}
