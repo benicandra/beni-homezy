@@ -1,4 +1,5 @@
 import ButtonText from "@/components/ui/ButtonText";
+import { MotionSection } from "@/components/ui";
 import CategoryCard from "@/components/shared/CategoryCard/CategoryCard";
 
 import BuildingIcon from "@/assets/icons/buliding.svg";
@@ -25,7 +26,7 @@ const categories = [
 
 export default function Categories() {
   return (
-    <section className="flex flex-col gap-8 lg:gap-16">
+    <MotionSection className="flex flex-col gap-8 lg:gap-16">
       <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-center">
         <div>
           <h2 className="text-[32px] lg:text-5xl md:text-[44px] leading-tight font-semibold tracking-tight text-foreground">
@@ -41,6 +42,6 @@ export default function Categories() {
           <CategoryCard key={category.title} {...category} />
         ))}
       </div>
-    </section>
+    </MotionSection>
   );
 }

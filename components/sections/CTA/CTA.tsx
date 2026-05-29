@@ -1,13 +1,14 @@
 import Image from "next/image";
+import { MotionSection } from "@/components/ui";
 
 import Pattern from "@/assets/pattern-2.png";
 import Button from "@/components/ui/Button";
 
 export default function CTA() {
   return (
-    <section>
+    <MotionSection>
       <div className="flex flex-col lg:flex-row h-auto lg:h-95 border-2 rounded-[15px] border-foreground bg-lavender-80 overflow-hidden">
-        <div className="flex flex-col w-full lg:w-[50%] gap-6 justify-center md:items-center md:text-center py-10 px-8 lg:py-14 lg:px-18 relative z-10">
+        <div className="flex flex-col w-full lg:w-[50%] gap-6 justify-center md:items-start md:text-left py-10 px-8 lg:py-14 lg:px-18 relative z-10">
           <div className="flex flex-col gap-2">
             <h2 className="text-3xl font-semibold lg:text-5xl text-white">
               Subscribe To Our Newsletter
@@ -41,6 +42,6 @@ export default function CTA() {
           />
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

@@ -1,5 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import { ButtonText } from "@/components/ui";
+import { ButtonText, MotionSection } from "@/components/ui";
 import PropertyCard from "@/components/shared/PropertyCard/PropertyCard";
 import { featuredProperties, properties } from "@/lib/data";
 
@@ -12,9 +15,18 @@ import AreaIcon from "@/assets/icons/surface-area.svg";
 import RepairIcon from "@/assets/icons/repair.svg";
 
 export default function Featured() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const maxDescriptionLength = 134;
+
+  const description = featuredProperties.description;
+  const isLongDescription = description.length > maxDescriptionLength;
+  const displayDescription = isExpanded || !isLongDescription
+    ? description
+    : description.substring(0, maxDescriptionLength).trim() + "...";
+
   return (
-    <section className="flex flex-col gap-2 lg:gap-12">
-      <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-center mb-12">
+    <MotionSection className="flex flex-col gap-2 lg:gap-12">
+      <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-center">
         <div>
           <h2 className="text-[32px] lg:text-5xl leading-tight font-semibold tracking-tight text-foreground">
             Featured Listings
@@ -26,7 +38,7 @@ export default function Featured() {
       </div>
 
       <div className="flex flex-col gap-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] bg-white rounded-[15px] border border-lavender-40 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] bg-white rounded-[15px] border border-lavender-40">
           <div className="relative w-full h-75 lg:w-100 xl:w-125 lg:h-auto shrink-0">
             <div className="absolute inset-0 overflow-hidden rounded-t-[14px] lg:rounded-tr-none lg:rounded-l-[14px]">
               <Image
@@ -89,11 +101,16 @@ export default function Featured() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-[#686A79] text-lg leading-relaxed font-light">
-                    {featuredProperties.description}{" "}
-                    <span className="font-semibold text-foreground cursor-pointer hover:text-lavender">
-                      Read More
-                    </span>
+                  <p className="text-[#686A79] text-lg leading-relaxed font-light transition-all duration-300">
+                    {displayDescription}{" "}
+                    {isLongDescription && (
+                      <button
+                        onClick={() => setIsExpanded(!isExpanded)}
+                        className="font-semibold text-foreground cursor-pointer hover:text-lavender bg-transparent border-none p-0 inline focus:outline-none"
+                      >
+                        {isExpanded ? "Read Less" : "Read More"}
+                      </button>
+                    )}
                   </p>
                 </div>
               </div>
@@ -153,6 +170,6 @@ export default function Featured() {
           ))}
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }

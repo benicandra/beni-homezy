@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TestimonialCard from "@/components/shared/TestimonialCard/TestimonialCard";
-import { CarouselControls } from "@/components/ui";
+import { CarouselControls, MotionSection } from "@/components/ui";
 import { testimonials } from "@/lib/data";
 
 const CARD_WIDTH_PX = 480;
@@ -10,7 +10,22 @@ const GAP_PX = 24;
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const maxIndex = testimonials.length - 1;
+  const [maxIndex, setMaxIndex] = useState(testimonials.length - 1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMaxIndex(
+        Math.max(0, testimonials.length - (window.innerWidth >= 1024 ? 2 : 1))
+      );
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  if (currentIndex > maxIndex) {
+    setCurrentIndex(maxIndex);
+  }
 
   const handlePrev = () => setCurrentIndex((i) => Math.max(0, i - 1));
   const handleNext = () => setCurrentIndex((i) => Math.min(maxIndex, i + 1));
@@ -18,7 +33,7 @@ export default function Testimonials() {
   const translateX = currentIndex * (CARD_WIDTH_PX + GAP_PX);
 
   return (
-    <section className="flex flex-col gap-10">
+    <MotionSection className="w-screen relative left-1/2 -translate-x-1/2 flex flex-col gap-10 overflow-hidden">
       <div className="text-center">
         <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
           Kind Words From Our Customers
@@ -38,7 +53,7 @@ export default function Testimonials() {
         </div>
       </div>
 
-      <div className="hidden lg:block overflow-hidden lg:-mr-35">
+      <div className="hidden lg:block overflow-hidden">
         <div
           className="flex gap-6 transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${translateX}px)` }}
@@ -58,6 +73,6 @@ export default function Testimonials() {
         prevAriaLabel="Previous testimonial"
         nextAriaLabel="Next testimonial"
       />
-    </section>
+    </MotionSection>
   );
 }

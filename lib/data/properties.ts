@@ -43,7 +43,7 @@ export const featuredProperties: FeaturedProperty = {
     image: Agent8,
   },
   description:
-    "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation",
+    "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Curabitur vel nisi quis justo venenatis lobortis in a ex. Mauris efficitur justo sed ullamcorper.",
   propertyType: "Modern Loft",
   listingType: "rent",
   yearBuilt: 2019,

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { CarouselControls } from "@/components/ui";
+import { CarouselControls, MotionSection } from "@/components/ui";
 import BenefitCard from "@/components/shared/BenefitCard/BenefitCard";
 import { benefits } from "@/lib/data";
 
@@ -14,7 +14,7 @@ export default function Benefits() {
   const handleNext = () => setCurrentIndex((i) => Math.min(maxIndex, i + 1));
 
   return (
-    <section className="flex flex-col gap-8 lg:gap-16">
+    <MotionSection className="flex flex-col gap-8 lg:gap-16">
       <div className="flex flex-col gap-4 lg:gap-6 lg:flex-row lg:justify-between lg:items-center">
         <div className="lg:w-121.5">
           <h2 className="text-[32px] lg:text-5xl md:text-[44px] leading-tight font-semibold tracking-tight text-foreground">
@@ -58,6 +58,6 @@ export default function Benefits() {
         nextAriaLabel="Next benefit"
         className="md:hidden"
       />
-    </section>
+    </MotionSection>
   );
 }

@@ -41,7 +41,7 @@ export default function PropertyCard({
         ? "h-65 sm:h-auto sm:w-60 md:w-70 shrink-0"
         : layout === "compact"
           ? "h-48 w-full"
-          : "h-65 w-full",
+          : "h-60 lg:h-[210px] w-full shrink-0",
     imageRounded:
       layout === "horizontal"
         ? "rounded-t-[14px] sm:rounded-tr-none sm:rounded-l-[14px]"
@@ -51,7 +51,7 @@ export default function PropertyCard({
         ? "gap-3 p-5 sm:p-6"
         : layout === "compact"
           ? "gap-3 p-5"
-          : "gap-4 py-8 px-6",
+          : "gap-3 p-5",
     titleSize:
       layout === "horizontal"
         ? "text-xl"
@@ -69,7 +69,7 @@ export default function PropertyCard({
         ? "pt-4 gap-4"
         : layout === "compact"
           ? "pt-4 gap-2"
-          : "pt-6 gap-3 lg:gap-3 xl:gap-6",
+          : "pt-4 gap-3 lg:gap-3 xl:gap-6",
     iconSize:
       layout === "horizontal" ? "w-5 h-5" : "lg:w-5 xl:w-6 lg:h-5 xl:h-6",
   };
@@ -78,18 +78,27 @@ export default function PropertyCard({
     <div
       onClick={onClick}
       className={cn(
-        "bg-white rounded-[15px] border border-lavender-40 shadow-sm flex",
+        "relative bg-white rounded-[15px] border border-lavender-40 shadow-sm flex",
         layout === "horizontal" ? "flex-col sm:flex-row" : "flex-col",
+        layout === "vertical" && "h-auto xl:h-[420px]",
         onClick &&
           "cursor-pointer hover:shadow-md hover:border-lavender transition-all duration-200",
-        className
+        className,
       )}
     >
+      {isFeatured && (
+        <FeaturedIcon
+          className={cn(
+            "absolute -left-2 w-28.25 h-10 text-white z-20",
+            layout === "vertical" ? "top-1/2 -translate-y-1/2" : "top-5"
+          )}
+        />
+      )}
       <div className={cn("relative", layoutStyles.imageHeight)}>
         <div
           className={cn(
             "absolute inset-0 overflow-hidden",
-            layoutStyles.imageRounded
+            layoutStyles.imageRounded,
           )}
         >
           <Image
@@ -100,20 +109,12 @@ export default function PropertyCard({
             className="object-cover"
           />
         </div>
-        {isFeatured && (
-          <FeaturedIcon className="absolute top-5 -left-2 w-28.25 h-10 text-white z-10" />
-        )}
       </div>
-      <div
-        className={cn(
-          "flex-1 flex flex-col",
-          layoutStyles.bodyPadding
-        )}
-      >
+      <div className={cn("flex-1 flex flex-col", layoutStyles.bodyPadding)}>
         <div
           className={cn(
             "flex flex-col",
-            layout === "horizontal" || layout === "compact" ? "gap-2" : "gap-4"
+            layout === "horizontal" || layout === "compact" ? "gap-2" : "gap-3",
           )}
         >
           <div className="flex flex-col gap-1">
@@ -121,7 +122,7 @@ export default function PropertyCard({
               <span
                 className={cn(
                   "font-bold text-foreground",
-                  layoutStyles.priceSize
+                  layoutStyles.priceSize,
                 )}
               >
                 {price}
@@ -135,7 +136,7 @@ export default function PropertyCard({
             <h4
               className={cn(
                 "leading-tight font-semibold text-foreground",
-                layoutStyles.titleSize
+                layoutStyles.titleSize,
               )}
             >
               {title}
@@ -151,7 +152,7 @@ export default function PropertyCard({
         <div
           className={cn(
             "flex flex-row lg:flex-col xl:flex-row items-center lg:items-start xl:items-center border-t border-[#F2F2F2] mt-auto",
-            layoutStyles.featuresGap
+            layoutStyles.featuresGap,
           )}
         >
           <div className="flex items-center gap-2 text-sm text-foreground font-medium whitespace-nowrap">

@@ -1,6 +1,7 @@
 "use client";
 
 import PropertyCard from "@/components/shared/PropertyCard/PropertyCard";
+import { MotionSection } from "@/components/ui";
 import Pagination from "@/components/shared/Pagination/Pagination";
 import FilterBar from "./FilterBar";
 import ViewModeToggle from "./ViewModeToggle";
@@ -49,7 +50,7 @@ export default function PropertySearch() {
   } = usePropertyFilters();
 
   return (
-    <section className="flex flex-col gap-10">
+    <MotionSection className="flex flex-col gap-10">
       <div>
         <h2 className="text-[32px] lg:text-5xl leading-tight font-semibold tracking-tight text-foreground">
           Search Properties
@@ -128,6 +129,6 @@ export default function PropertySearch() {
           />
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 }
