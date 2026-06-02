@@ -4,15 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { ButtonText, MotionSection } from "@/components/ui";
 import PropertyCard from "@/components/shared/PropertyCard/PropertyCard";
-import { featuredProperties, properties } from "@/lib/data";
+import PropertySummaryStats from "@/components/shared/PropertySummaryStats/PropertySummaryStats";
+import { featuredProperties, featuredPropertyStats, properties } from "@/lib/data";
 
 import FeaturedIcon from "@/assets/icons/featured.svg";
 import CallIcon from "@/assets/icons/call.svg";
 import LocationIcon from "@/assets/icons/location-linear.svg";
-import BedIcon from "@/assets/icons/bed.svg";
-import BathIcon from "@/assets/icons/bath.svg";
-import AreaIcon from "@/assets/icons/surface-area.svg";
-import RepairIcon from "@/assets/icons/repair.svg";
 
 export default function Featured() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -20,13 +17,14 @@ export default function Featured() {
 
   const description = featuredProperties.description;
   const isLongDescription = description.length > maxDescriptionLength;
-  const displayDescription = isExpanded || !isLongDescription
-    ? description
-    : description.substring(0, maxDescriptionLength).trim() + "...";
+  const displayDescription =
+    isExpanded || !isLongDescription
+      ? description
+      : description.substring(0, maxDescriptionLength).trim() + "...";
 
   return (
-    <MotionSection className="flex flex-col gap-2 lg:gap-12">
-      <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-center">
+    <MotionSection className="flex flex-col gap-4 lg:gap-12">
+      <div className="flex flex-col gap-0 lg:flex-row lg:justify-between lg:items-center">
         <div>
           <h2 className="text-[32px] lg:text-5xl leading-tight font-semibold tracking-tight text-foreground">
             Featured Listings
@@ -116,45 +114,11 @@ export default function Featured() {
               </div>
             </div>
 
-            <div className="bg-[#F6F4FA] rounded-[15px] p-4 grid grid-cols-2 sm:grid-cols-4 gap-6">
-              <div className="flex flex-col gap-2">
-                <span className="text-base text-[#868893] font-light">
-                  Bedrooms
-                </span>
-                <div className="flex items-center gap-2 font-bold text-base text-foreground">
-                  <BedIcon className="w-6 h-6" /> {featuredProperties.beds}
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <span className="text-base text-[#868893] font-light">
-                  Bathrooms
-                </span>
-                <div className="flex items-center gap-2 font-bold text-base text-foreground">
-                  <BathIcon className="w-6 h-6" /> {featuredProperties.baths}
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <span className="text-base text-[#868893] font-light">
-                  Square Area
-                </span>
-                <div className="flex items-center gap-2 font-bold text-base text-foreground">
-                  <AreaIcon className="w-6 h-6" /> {featuredProperties.area}
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <span className="text-base text-[#868893] font-light">
-                  Property Type
-                </span>
-                <div className="flex items-center gap-2 font-bold text-base text-foreground">
-                  <RepairIcon className="w-6 h-6" />{" "}
-                  {featuredProperties.propertyType}
-                </div>
-              </div>
-            </div>
+            <PropertySummaryStats stats={featuredPropertyStats} />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {properties.slice(0, 3).map((property) => (
             <PropertyCard
               key={property.id}

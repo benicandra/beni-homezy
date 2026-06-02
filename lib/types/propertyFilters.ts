@@ -39,4 +39,5 @@ export interface UsePropertyFiltersReturn {
   handlePrevious: () => void;
   handleNext: () => void;
   handlePropertySelect: (id: string | null) => void;
+  handleResetFilters: () => void;
 }

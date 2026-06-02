@@ -19,6 +19,7 @@ import { getPaginationRange } from "@/lib/utils/pagination";
 import { filterProperties } from "@/lib/utils/filterProperties";
 import { buildFilterParams, buildQueryString } from "@/lib/utils/urlParams";
 import type { MoreFilters } from "@/lib/types";
+import { DEFAULT_MORE_FILTERS } from "@/lib/types";
 import {
   ITEMS_PER_PAGE,
   DEFAULT_LOCATION,
@@ -209,6 +210,25 @@ export function usePropertyFilters(options?: UsePropertyFiltersOptions): UseProp
     setSelectedPropertyId(id);
   };
 
+  const handleResetFilters = () => {
+    setSelectedLocation(DEFAULT_LOCATION);
+    setSelectedPriceValue(DEFAULT_PRICE_VALUE);
+    setSelectedPropertyType(DEFAULT_TYPE);
+    setMoreFilters(DEFAULT_MORE_FILTERS);
+    setCurrentPage(1);
+    setSelectedPropertyId(null);
+
+    const filtered = filterProperties(properties, {
+      location: DEFAULT_LOCATION,
+      priceValue: DEFAULT_PRICE_VALUE,
+      type: DEFAULT_TYPE,
+      filters: DEFAULT_MORE_FILTERS,
+    });
+    setFilteredProperties(filtered);
+
+    router.replace(pathname, { scroll: false });
+  };
+
   return {
     selectedLocation,
     selectedPriceLabel,
@@ -237,5 +257,6 @@ export function usePropertyFilters(options?: UsePropertyFiltersOptions): UseProp
     handlePrevious,
     handleNext,
     handlePropertySelect,
+    handleResetFilters,
   };
 }

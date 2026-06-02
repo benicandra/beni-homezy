@@ -21,7 +21,7 @@ export default function CategoryCard({
 }: CategoryCardProps) {
   return (
     <div
-      className={`flex flex-row md:flex-col xl:flex-row p-8 justify-between items-center border border-lavender-40 rounded-[15px] bg-white ${className}`}
+      className={`flex flex-row md:flex-col xl:flex-row p-4 md:p-6 xl:p-8 justify-between items-center border border-lavender-40 rounded-[15px] bg-white ${className}`}
     >
       <div className="flex flex-row md:flex-col xl:flex-row gap-4 items-center md:items-center xl:items-center">
         <div

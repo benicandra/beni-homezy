@@ -3,8 +3,10 @@ import { cn } from "@/lib/utils";
 import ArrowLeftIcon from "@/assets/icons/arrow-left.svg";
 import ArrowRightIcon from "@/assets/icons/arrow-right.svg";
 
-interface CarouselControlsProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, "onPrev" | "onNext"> {
+interface CarouselControlsProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onPrev" | "onNext"
+> {
   onPrev: () => void;
   onNext: () => void;
   disablePrev?: boolean;
@@ -31,12 +33,12 @@ export const CarouselControls = forwardRef<
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <div
         ref={ref}
-        className={cn("flex justify-center gap-10", className)}
+        className={cn("flex justify-center gap-8 sm:gap-10", className)}
         {...props}
       >
         <button
@@ -46,7 +48,7 @@ export const CarouselControls = forwardRef<
           aria-label={prevAriaLabel}
           className={btnBase}
         >
-          <ArrowLeftIcon className="size-10" />
+          <ArrowLeftIcon className="size-6 md:size-8" />
         </button>
         <button
           type="button"
@@ -55,11 +57,11 @@ export const CarouselControls = forwardRef<
           aria-label={nextAriaLabel}
           className={btnBase}
         >
-          <ArrowRightIcon className="size-10" />
+          <ArrowRightIcon className="size-6 md:size-8" />
         </button>
       </div>
     );
-  }
+  },
 );
 
 CarouselControls.displayName = "CarouselControls";

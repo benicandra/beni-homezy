@@ -25,7 +25,7 @@ function SectionSkeleton() {
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-20 lg:gap-40">
+    <div className="flex flex-col gap-26 lg:gap-40">
       <Hero />
       <Featured />
       <Suspense fallback={<SectionSkeleton />}>

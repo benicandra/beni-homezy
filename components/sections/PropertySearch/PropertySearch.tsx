@@ -1,11 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import PropertyCard from "@/components/shared/PropertyCard/PropertyCard";
 import { MotionSection } from "@/components/ui";
+import { Button } from "@/components/ui";
 import Pagination from "@/components/shared/Pagination/Pagination";
 import FilterBar from "./FilterBar";
 import ViewModeToggle from "./ViewModeToggle";
 import { usePropertyFilters } from "@/lib/hooks/usePropertyFilters";
+import resultImage from "@/assets/result.png";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
@@ -47,6 +50,7 @@ export default function PropertySearch() {
     handlePrevious,
     handleNext,
     handlePropertySelect,
+    handleResetFilters,
   } = usePropertyFilters();
 
   return (
@@ -94,39 +98,63 @@ export default function PropertySearch() {
 
         <div className="flex flex-col gap-8">
           <div className="flex justify-between items-center">
-            <h3 className="text-[32px] font-semibold text-foreground tracking-tight">
-              {filteredProperties.length} Results
-            </h3>
+            <div className="flex flex-col items-start lg:flex-row lg:items-center lg:gap-3 gap-1">
+              <h3 className="text-[32px] font-semibold text-foreground tracking-tight">
+                {filteredProperties.length} Results
+              </h3>
+              <Button
+                variant="outline"
+                size="small"
+                onClick={handleResetFilters}
+              >
+                Reset
+              </Button>
+            </div>
             <ViewModeToggle viewMode={viewMode} onChange={setViewMode} />
           </div>
 
           <div className="flex flex-col gap-6">
-            {paginatedProperties.map((property) => (
-              <PropertyCard
-                key={property.id}
-                image={property.image}
-                price={property.price}
-                priceSuffix={property.priceSuffix}
-                title={property.title}
-                address={property.address}
-                beds={property.beds}
-                baths={property.baths}
-                area={property.area}
-                isFeatured={false}
-                layout="horizontal"
-                onClick={() => handlePropertySelect(property.id)}
-              />
-            ))}
+            {filteredProperties.length === 0 ? (
+              <div className="flex flex-col items-center justify-center gap-6 py-10">
+                <Image
+                  src={resultImage}
+                  alt="No results found"
+                  className="w-60 h-auto"
+                />
+                <p className="text-xl font-semibold text-foreground">
+                  No properties found
+                </p>
+              </div>
+            ) : (
+              paginatedProperties.map((property) => (
+                <PropertyCard
+                  key={property.id}
+                  image={property.image}
+                  price={property.price}
+                  priceSuffix={property.priceSuffix}
+                  title={property.title}
+                  address={property.address}
+                  beds={property.beds}
+                  baths={property.baths}
+                  area={property.area}
+                  isFeatured={false}
+                  layout="horizontal"
+                  onClick={() => handlePropertySelect(property.id)}
+                />
+              ))
+            )}
           </div>
 
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            paginationRange={paginationRange}
-            onPageChange={handlePageChange}
-            onPrevious={handlePrevious}
-            onNext={handleNext}
-          />
+          {filteredProperties.length > 0 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              paginationRange={paginationRange}
+              onPageChange={handlePageChange}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
+            />
+          )}
         </div>
       </div>
     </MotionSection>

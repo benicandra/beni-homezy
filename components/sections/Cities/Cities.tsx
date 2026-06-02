@@ -15,7 +15,7 @@ export default function Cities() {
   const handleNext = () => setCurrentIndex((i) => Math.min(maxIndex, i + 1));
 
   return (
-    <MotionSection className="flex flex-col gap-16">
+    <MotionSection className="flex flex-col gap-6 md:gap-16">
       <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-center">
         <div>
           <h2 className="text-[32px] lg:text-5xl md:text-[44px] leading-tight font-semibold tracking-tight text-foreground">
@@ -41,7 +41,7 @@ export default function Cities() {
         </div>
       </div>
 
-      <div className="hidden md:grid md:grid-cols-3 md:gap-4 lg:gap-8">
+      <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 md:gap-5 lg:gap-8">
         {cities.map((city) => (
           <CitiesCard key={city.id} {...city} />
         ))}

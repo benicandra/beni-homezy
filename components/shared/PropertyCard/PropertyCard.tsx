@@ -38,10 +38,10 @@ export default function PropertyCard({
   const layoutStyles = {
     imageHeight:
       layout === "horizontal"
-        ? "h-65 sm:h-auto sm:w-60 md:w-70 shrink-0"
+        ? "h-40 sm:h-auto sm:w-60 md:w-70 shrink-0"
         : layout === "compact"
-          ? "h-48 w-full"
-          : "h-60 lg:h-[210px] w-full shrink-0",
+          ? "h-44 w-full"
+          : "h-55 lg:h-[210px] w-full shrink-0",
     imageRounded:
       layout === "horizontal"
         ? "rounded-t-[14px] sm:rounded-tr-none sm:rounded-l-[14px]"
@@ -57,13 +57,13 @@ export default function PropertyCard({
         ? "text-xl"
         : layout === "compact"
           ? "text-[19px]"
-          : "text-[22px]",
+          : "text-xl md:text-2xl",
     priceSize:
       layout === "horizontal"
         ? "text-[28px]"
         : layout === "compact"
           ? "text-2xl"
-          : "text-[32px]",
+          : "text-2xl md:text-[32px]",
     featuresGap:
       layout === "horizontal"
         ? "pt-4 gap-4"
@@ -71,7 +71,9 @@ export default function PropertyCard({
           ? "pt-4 gap-2"
           : "pt-4 gap-3 lg:gap-3 xl:gap-6",
     iconSize:
-      layout === "horizontal" ? "w-5 h-5" : "lg:w-5 xl:w-6 lg:h-5 xl:h-6",
+      layout === "horizontal"
+        ? "w-5 h-5"
+        : "w-5 h-5 lg:w-5 xl:w-6 lg:h-5 xl:h-6",
   };
 
   return (
@@ -90,7 +92,7 @@ export default function PropertyCard({
         <FeaturedIcon
           className={cn(
             "absolute -left-2 w-28.25 h-10 text-white z-20",
-            layout === "vertical" ? "top-1/2 -translate-y-1/2" : "top-5"
+            layout === "vertical" ? "top-1/2 -translate-y-1/2" : "top-5",
           )}
         />
       )}

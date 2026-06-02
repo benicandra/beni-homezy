@@ -19,7 +19,7 @@ export default function CitiesCard({
     <div
       className={`flex flex-col overflow-hidden border border-lavender-40 bg-white rounded-[15px] ${className}`}
     >
-      <div className="relative h-85">
+      <div className="relative h-85 lg:h-auto lg:aspect-[3/2]">
         <Image
           src={image}
           alt={title}
