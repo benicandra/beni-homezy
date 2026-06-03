@@ -1,20 +1,14 @@
 "use client";
 
-import {
-  forwardRef,
-  useState,
-  useId,
-  type ButtonHTMLAttributes,
-} from "react";
+import { forwardRef, useState, useId, type ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 import { useOutsideClick } from "@/lib/hooks";
-import ArrowDownIcon from "@/assets/icons/arrow-down.svg";
+import ArrowDownIcon from "@/assets/icons/arrow-down-linear.svg";
 
-interface SelectProps
-  extends Omit<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    "onChange" | "value" | "defaultValue"
-  > {
+interface SelectProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "onChange" | "value" | "defaultValue"
+> {
   placeholder?: string;
   options?: string[];
   value?: string;
@@ -35,11 +29,11 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
       id,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const [uncontrolledValue, setUncontrolledValue] = useState<string | undefined>(
-      defaultValue
-    );
+    const [uncontrolledValue, setUncontrolledValue] = useState<
+      string | undefined
+    >(defaultValue);
     const [isOpen, setIsOpen] = useState(false);
     const [focusedIndex, setFocusedIndex] = useState(-1);
 
@@ -84,7 +78,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
             setIsOpen(true);
           } else {
             setFocusedIndex((prev) =>
-              prev < options.length - 1 ? prev + 1 : prev
+              prev < options.length - 1 ? prev + 1 : prev,
             );
           }
           break;
@@ -122,7 +116,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
             "flex items-center justify-between w-full px-4 py-3.5 bg-white border rounded-[12px] text-left text-[15px] outline-none transition-colors",
             isOpen ? "border-lavender" : "border-[#E5E7EB]",
             disabled && "opacity-50 cursor-not-allowed",
-            className
+            className,
           )}
           {...props}
         >
@@ -136,7 +130,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           <ArrowDownIcon
             className={cn(
               "w-4 h-4 text-foreground transition-transform duration-200",
-              isOpen && "rotate-180"
+              isOpen && "rotate-180",
             )}
           />
         </button>
@@ -165,7 +159,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                     "w-full px-3 py-2.5 text-left text-[15px] rounded-[8px] transition-colors font-medium",
                     isSelected || isFocused
                       ? "bg-foreground text-white"
-                      : "text-foreground hover:bg-foreground hover:text-white"
+                      : "text-foreground hover:bg-foreground hover:text-white",
                   )}
                 >
                   {option}
@@ -176,7 +170,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Select.displayName = "Select";

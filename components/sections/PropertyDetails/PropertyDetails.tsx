@@ -14,43 +14,52 @@ import HeroImage from "@/assets/properties/properties-4.webp";
 import PropertyDetailsAccordion from "./PropertyDetailsAccordion";
 import PropertyGallery from "./PropertyGallery";
 import PropertyStats from "./PropertyStats";
+import RequestTourCard from "./RequestTourCard";
+import ListingAgentCard from "./ListingAgentCard";
+import MapPreview from "./MapPreview";
 
 const similarListings = properties.slice(0, 3);
 
 export default function PropertyDetails() {
   return (
     <div className="flex flex-col gap-20 lg:gap-28">
-      <section className="overflow-hidden rounded-[15px]">
-        <div className="relative h-[420px] md:h-[520px] lg:h-[600px]">
-          <Image
-            src={HeroImage}
-            alt="Beacon Homes LLC property exterior"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-black/10" />
+      <div className="relative">
+        <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden rounded-[15px] -mt-6 lg:-mt-20">
+          <div className="relative h-[420px] md:h-[520px] lg:h-[600px]">
+            <Image
+              src={HeroImage}
+              alt="Beacon Homes LLC property exterior"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-black/10" />
 
-          <Link
-            href="/properties"
-            className="absolute left-6 top-8 flex items-center gap-4 text-base font-bold text-foreground transition-colors hover:text-lavender md:left-35 md:text-lg"
-          >
-            <ArrowLeftIcon className="h-5 w-5" />
-            Back To Search
-          </Link>
+            <Link
+              href="/properties"
+              className="absolute left-6 top-8 flex items-center gap-4 text-base font-bold text-foreground transition-colors hover:text-lavender md:left-35 md:text-lg"
+            >
+              <ArrowLeftIcon className="h-5 w-5" />
+              Back To Search
+            </Link>
 
-          <Button
-            variant="outline"
-            className="absolute bottom-8 left-6 bg-white hover:bg-lavender-20 md:left-35"
-          >
-            <GalleryIcon className="mr-2 h-5 w-5" />
-            Show All Photos
-          </Button>
+            <Button
+              variant="outline"
+              className="absolute bottom-8 left-6 bg-white hover:bg-lavender-20 md:left-35"
+            >
+              <GalleryIcon className="mr-2 h-5 w-5" />
+              Show All Photos
+            </Button>
+          </div>
+        </section>
+
+        <div className="hidden lg:block lg:absolute lg:right-6 lg:bottom-0 lg:translate-y-1/2 lg:w-[365px] lg:z-10">
+          <RequestTourCard />
         </div>
-      </section>
+      </div>
 
-      <MotionSection className="grid gap-10 lg:items-start">
+      <MotionSection className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_365px] lg:items-start">
         <div className="flex flex-col gap-14 lg:gap-20">
           <section className="flex flex-col gap-8">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -104,9 +113,15 @@ export default function PropertyDetails() {
           <div className="h-px bg-[#D8D5E4]" />
           <PropertyDetailsAccordion />
           <div className="h-px bg-[#D8D5E4]" />
+          <div className="lg:hidden">
+            <RequestTourCard />
+          </div>
           <PropertyGallery />
           <div className="h-px bg-[#D8D5E4]" />
+          <ListingAgentCard />
+          <MapPreview />
         </div>
+        <div className="hidden lg:block" />
       </MotionSection>
 
       <MotionSection className="flex flex-col gap-10">
