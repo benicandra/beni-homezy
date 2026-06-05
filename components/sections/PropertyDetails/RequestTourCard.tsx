@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import CalendarIcon from "@/assets/icons/calendar.svg";
 import MessageIcon from "@/assets/icons/message-text.svg";
 import PhoneIcon from "@/assets/icons/call.svg";
+import ClockIcon from "@/assets/icons/clock.svg";
+import SmsIcon from "@/assets/icons/sms.svg";
 
 const dateOptions = ["Today", "Tomorrow", "Friday, Jun 5", "Saturday, Jun 6"];
 const timeOptions = ["09:00 AM", "11:00 AM", "02:00 PM", "04:00 PM"];
@@ -17,14 +19,16 @@ export default function RequestTourCard() {
 
   return (
     <aside className="rounded-[15px] border border-foreground bg-lavender-20 p-6 shadow-sm">
-      <span className="text-base font-light text-[#868893]">Price</span>
-      <p className="mt-3 text-[42px] font-bold leading-none tracking-tight text-foreground lg:text-5xl">
-        $15,000
-      </p>
+      <div className="flex flex-col gap-2">
+        <span className="text-base font-light text-[#868893]">Price</span>
+        <p className="text-[32px] font-bold leading-none tracking-tight text-foreground lg:text-5xl">
+          $15,000
+        </p>
+      </div>
 
       <div className="my-7 h-px bg-[#D8D5E4]" />
 
-      <h3 className="text-[24px] font-semibold leading-tight tracking-tight text-foreground">
+      <h3 className="text-xl lg:text-2xl font-semibold leading-tight tracking-tight text-foreground">
         Request a home tour
       </h3>
 
@@ -68,14 +72,22 @@ export default function RequestTourCard() {
         </div>
         <div className="relative">
           <CalendarIcon className="pointer-events-none absolute left-4 top-1/2 z-10 h-5 w-5 -translate-y-1/2 text-lavender" />
-          <Select placeholder="Select Date" options={dateOptions} className="pl-12" />
+          <Select
+            placeholder="Select Date"
+            options={dateOptions}
+            className="pl-12"
+          />
         </div>
         <div className="relative">
-          <CalendarIcon className="pointer-events-none absolute left-4 top-1/2 z-10 h-5 w-5 -translate-y-1/2 text-lavender" />
-          <Select defaultValue="11:00 AM" options={timeOptions} className="pl-12" />
+          <ClockIcon className="pointer-events-none absolute left-4 top-1/2 z-10 h-5 w-5 -translate-y-1/2 text-lavender" />
+          <Select
+            defaultValue="11:00 AM"
+            options={timeOptions}
+            className="pl-12"
+          />
         </div>
         <div className="relative">
-          <PhoneIcon className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-lavender" />
+          <SmsIcon className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-lavender" />
           <input
             type="tel"
             defaultValue="+ 1 234 567 890"

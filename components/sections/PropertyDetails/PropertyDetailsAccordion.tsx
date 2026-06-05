@@ -11,7 +11,7 @@ const accordionItems = [
     content: [
       {
         heading: "Interior Details",
-        details: ["Basement: Partial, Storage Space", "Number of Rooms: 10"],
+        details: ["Basement: Partial,Storage Space", "Number of Rooms: 10"],
       },
       {
         heading: "Beds & Baths",
@@ -62,7 +62,7 @@ export default function PropertyDetailsAccordion() {
               <button
                 type="button"
                 onClick={() => setOpenItem(isOpen ? "" : item.title)}
-                className="flex w-full items-center justify-between bg-lavender-20 px-4 py-4 text-left text-base font-bold text-foreground md:px-5"
+                className="flex w-full items-center justify-between bg-lavender-20 px-4 py-4 text-left text-lg font-bold text-foreground md:px-5"
               >
                 {item.title}
                 <ArrowDownIcon
@@ -74,7 +74,7 @@ export default function PropertyDetailsAccordion() {
               </button>
 
               {isOpen && item.content.length > 0 && (
-                <div className="flex flex-col px-4 py-6 md:px-5">
+                <div className="flex flex-col px-4 py-6">
                   {item.content.map((section, index) => (
                     <div
                       key={section.heading}
@@ -86,11 +86,11 @@ export default function PropertyDetailsAccordion() {
                       <h3 className="text-base font-light text-[#868893]">
                         {section.heading}
                       </h3>
-                      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                      <div className="grid gap-1 md:grid-cols-2 lg:grid-cols-3">
                         {section.details.map((detail) => (
                           <p
                             key={detail}
-                            className="flex gap-2 text-base font-bold text-foreground"
+                            className="flex gap-0.5 text-base font-bold text-foreground whitespace-nowrap"
                           >
                             <span aria-hidden="true">•</span>
                             {detail}

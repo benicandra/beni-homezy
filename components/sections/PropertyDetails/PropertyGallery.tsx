@@ -1,13 +1,20 @@
 import Image, { type StaticImageData } from "next/image";
 
-import Prop1 from "@/assets/properties/prop-1.webp";
-import Prop2 from "@/assets/properties/prop-2.webp";
-import Prop3 from "@/assets/properties/prop-3.webp";
-import Prop4 from "@/assets/properties/prop-4.webp";
-import Prop5 from "@/assets/properties/prop-5.webp";
-import Prop6 from "@/assets/properties/prop-6.webp";
+import Inter1 from "@/assets/interiors/image-72.webp";
+import Inter2 from "@/assets/interiors/image-73.webp";
+import Inter3 from "@/assets/interiors/image-74.webp";
+import Inter4 from "@/assets/interiors/image-75.webp";
+import Inter5 from "@/assets/interiors/image-76.webp";
+import Inter6 from "@/assets/interiors/image-82.webp";
 
-const galleryImages: StaticImageData[] = [Prop1, Prop2, Prop3, Prop4, Prop5, Prop6];
+const galleryImages: StaticImageData[] = [
+  Inter1,
+  Inter2,
+  Inter3,
+  Inter4,
+  Inter5,
+  Inter6,
+];
 
 export default function PropertyGallery() {
   return (
@@ -15,7 +22,7 @@ export default function PropertyGallery() {
       <h2 className="text-2xl font-semibold tracking-tight text-foreground">
         Property Gallery
       </h2>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
         {galleryImages.map((image, index) => (
           <div
             key={image.src}

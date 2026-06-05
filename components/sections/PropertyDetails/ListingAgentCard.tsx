@@ -32,10 +32,10 @@ export default function ListingAgentCard() {
         </div>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:w-auto">
-          <Button variant="outline" className="w-full md:w-40">
+          <Button variant="outline" className="w-full md:w-43">
             Ask Question
           </Button>
-          <Button variant="outline" className="w-full md:w-40">
+          <Button variant="outline" className="w-full md:w-43">
             Contact Agent
           </Button>
         </div>

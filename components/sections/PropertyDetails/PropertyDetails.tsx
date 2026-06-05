@@ -5,10 +5,10 @@ import PropertyCard from "@/components/shared/PropertyCard/PropertyCard";
 import { Button, MotionSection } from "@/components/ui";
 import { properties } from "@/lib/data";
 
-import ArrowLeftIcon from "@/assets/icons/arrow-left.svg";
+import ArrowLeftIcon from "@/assets/icons/arrow-left-lite.svg";
 import GalleryIcon from "@/assets/icons/gallery.svg";
 import ShareIcon from "@/assets/icons/share.svg";
-import PlayIcon from "@/assets/icons/send.svg";
+import PlayIcon from "@/assets/icons/play.svg";
 import HeroImage from "@/assets/properties/properties-4.webp";
 
 import PropertyDetailsAccordion from "./PropertyDetailsAccordion";
@@ -24,8 +24,8 @@ export default function PropertyDetails() {
   return (
     <div className="flex flex-col gap-20 lg:gap-28">
       <div className="relative">
-        <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden rounded-[15px] -mt-6 lg:-mt-20">
-          <div className="relative h-[420px] md:h-[520px] lg:h-[600px]">
+        <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden md:rounded-[15px] -mt-10 lg:-mt-20">
+          <div className="relative h-[300px] md:h-[520px] lg:h-[600px]">
             <Image
               src={HeroImage}
               alt="Beacon Homes LLC property exterior"
@@ -38,7 +38,7 @@ export default function PropertyDetails() {
 
             <Link
               href="/properties"
-              className="absolute left-6 top-8 flex items-center gap-4 text-base font-bold text-foreground transition-colors hover:text-lavender md:left-35 md:text-lg"
+              className="absolute left-6 top-14 md:top-8 flex items-center gap-4 text-base font-bold text-foreground transition-colors hover:text-lavender md:left-35 md:text-lg"
             >
               <ArrowLeftIcon className="h-5 w-5" />
               Back To Search
@@ -46,7 +46,7 @@ export default function PropertyDetails() {
 
             <Button
               variant="outline"
-              className="absolute bottom-8 left-6 bg-white hover:bg-lavender-20 md:left-35"
+              className="absolute bottom-12 left-6 bg-white hover:bg-lavender-20 md:bottom-0 md:left-35"
             >
               <GalleryIcon className="mr-2 h-5 w-5" />
               Show All Photos
@@ -54,20 +54,20 @@ export default function PropertyDetails() {
           </div>
         </section>
 
-        <div className="hidden lg:block lg:absolute lg:right-6 lg:bottom-0 lg:translate-y-1/2 lg:w-[365px] lg:z-10">
+        <div className="hidden lg:block lg:absolute lg:right-2 lg:bottom-0 lg:translate-y-1/2 lg:w-[365px] lg:z-10">
           <RequestTourCard />
         </div>
       </div>
 
-      <MotionSection className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_365px] lg:items-start">
-        <div className="flex flex-col gap-14 lg:gap-20">
+      <MotionSection className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_365px] lg:items-start -mt-10 lg:-mt-10">
+        <div className="flex flex-col gap-14 lg:gap-14">
           <section className="flex flex-col gap-8">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
-                <h1 className="text-[34px] font-semibold leading-tight tracking-tight text-foreground md:text-5xl">
+                <h1 className="text-[28px] font-semibold leading-tight tracking-tight text-foreground md:text-[38px]">
                   Beacon Homes LLC
                 </h1>
-                <p className="mt-3 text-lg font-light text-[#868893] md:text-xl">
+                <p className="mt-3 text-xl font-light text-[#868893] md:text-[20px]">
                   3 Leame Close, Hull, HU3 6ND
                 </p>
               </div>
@@ -87,7 +87,7 @@ export default function PropertyDetails() {
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
               Description
             </h2>
-            <p className="max-w-3xl text-base font-light leading-8 text-[#868893]">
+            <p className="max-w-3xl text-base font-light leading-6 text-[#868893]">
               First time on market in 40 years. Detached two unit Victorian -
               vacant - with excellent bones on rear of huge (4552 sq ft) flat
               sunny lot on fabulous quiet block accessible to GG Park and
@@ -105,17 +105,18 @@ export default function PropertyDetails() {
               href="#"
               className="inline-flex w-fit items-center gap-3 text-base font-bold text-foreground transition-colors hover:text-lavender"
             >
-              <PlayIcon className="h-5 w-5 rotate-45" />
+              <PlayIcon className="h-5 w-5" />
               View Video Tour
             </Link>
           </section>
 
-          <div className="h-px bg-[#D8D5E4]" />
-          <PropertyDetailsAccordion />
-          <div className="h-px bg-[#D8D5E4]" />
           <div className="lg:hidden">
             <RequestTourCard />
           </div>
+
+          <div className="h-px bg-[#D8D5E4]" />
+
+          <PropertyDetailsAccordion />
           <PropertyGallery />
           <div className="h-px bg-[#D8D5E4]" />
           <ListingAgentCard />
@@ -124,7 +125,7 @@ export default function PropertyDetails() {
         <div className="hidden lg:block" />
       </MotionSection>
 
-      <MotionSection className="flex flex-col gap-10">
+      <MotionSection className=" hidden md:flex flex-col gap-10">
         <h2 className="text-[38px] font-semibold leading-tight tracking-tight text-foreground md:text-5xl">
           Similar Listings
         </h2>
