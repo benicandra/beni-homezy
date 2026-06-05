@@ -24,6 +24,7 @@ export default function MapPreview() {
           properties={[mapProperty]}
           selectedPropertyId={mapProperty.id}
           onPropertySelect={() => undefined}
+          zoomControlPosition="topright"
         />
       </div>
     </section>

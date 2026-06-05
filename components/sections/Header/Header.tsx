@@ -104,7 +104,10 @@ export default function Header() {
 
   return (
     <header className="bg-background sticky top-0 z-50">
-      <Container as="nav" className="py-6 flex items-center justify-between">
+      <Container
+        as="nav"
+        className="py-4 lg:py-6 flex items-center justify-between"
+      >
         <Link href="/" className="shrink-0">
           <Image
             src="/logo.svg"

@@ -25,7 +25,7 @@ export default function PropertyDetails() {
     <div className="flex flex-col gap-20 lg:gap-28">
       <div className="relative">
         <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden md:rounded-[15px] -mt-10 lg:-mt-20">
-          <div className="relative h-[300px] md:h-[520px] lg:h-[600px]">
+          <div className="relative h-[315px] md:h-[520px] lg:h-[600px]">
             <Image
               src={HeroImage}
               alt="Beacon Homes LLC property exterior"
@@ -46,7 +46,7 @@ export default function PropertyDetails() {
 
             <Button
               variant="outline"
-              className="absolute bottom-12 left-6 bg-white hover:bg-lavender-20 md:bottom-0 md:left-35"
+              className="absolute py-2.5 px-6 bottom-4 left-6 bg-white hover:bg-lavender-20 md:bottom-8 md:left-35"
             >
               <GalleryIcon className="mr-2 h-5 w-5" />
               Show All Photos
@@ -54,12 +54,12 @@ export default function PropertyDetails() {
           </div>
         </section>
 
-        <div className="hidden lg:block lg:absolute lg:right-2 lg:bottom-0 lg:translate-y-1/2 lg:w-[365px] lg:z-10">
+        <div className="hidden lg:block lg:absolute lg:right-2 lg:top-0 lg:bottom-0 lg:translate-y-1/2 lg:w-[365px] lg:z-10">
           <RequestTourCard />
         </div>
       </div>
 
-      <MotionSection className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_365px] lg:items-start -mt-10 lg:-mt-10">
+      <MotionSection className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_365px] mb-20 lg:mb-0 lg:items-start -mt-10 lg:-mt-10">
         <div className="flex flex-col gap-14 lg:gap-14">
           <section className="flex flex-col gap-8">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -73,7 +73,7 @@ export default function PropertyDetails() {
               </div>
               <Button
                 variant="outline"
-                className="w-full gap-2 bg-transparent md:w-auto"
+                className="w-fit py-2.5 px-6 gap-2 bg-transparent"
               >
                 <ShareIcon className="h-5 w-5" />
                 Share
@@ -117,6 +117,8 @@ export default function PropertyDetails() {
           <div className="h-px bg-[#D8D5E4]" />
 
           <PropertyDetailsAccordion />
+          <div className="h-px bg-[#D8D5E4]" />
+
           <PropertyGallery />
           <div className="h-px bg-[#D8D5E4]" />
           <ListingAgentCard />
@@ -125,7 +127,7 @@ export default function PropertyDetails() {
         <div className="hidden lg:block" />
       </MotionSection>
 
-      <MotionSection className=" hidden md:flex flex-col gap-10">
+      <MotionSection className="hidden md:flex flex-col gap-10">
         <h2 className="text-[38px] font-semibold leading-tight tracking-tight text-foreground md:text-5xl">
           Similar Listings
         </h2>

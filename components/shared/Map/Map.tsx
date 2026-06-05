@@ -138,12 +138,14 @@ interface MapProps {
   properties: Property[];
   selectedPropertyId: string | null;
   onPropertySelect: (id: string | null) => void;
+  zoomControlPosition?: "topleft" | "topright" | "bottomleft" | "bottomright";
 }
 
 export default function Map({
   properties,
   selectedPropertyId,
   onPropertySelect,
+  zoomControlPosition = "bottomright",
 }: MapProps) {
   const center = useMemo(() => calculateCenter(properties), [properties]);
 
@@ -157,7 +159,7 @@ export default function Map({
         zoomControl={false}
         className="w-full h-full min-h-125"
       >
-        <ZoomControl position="bottomright" />
+        <ZoomControl position={zoomControlPosition} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"

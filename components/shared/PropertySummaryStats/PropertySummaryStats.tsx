@@ -8,7 +8,7 @@ export default function PropertySummaryStats({
   stats,
 }: PropertySummaryStatsProps) {
   return (
-    <div className="bg-[#F6F4FA] rounded-[15px] p-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+    <div className="bg-[#F6F4FA] rounded-[15px] p-8 grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-2">
       {stats.map((stat) => {
         const Icon = stat.icon;
 
