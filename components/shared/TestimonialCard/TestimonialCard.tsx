@@ -22,14 +22,15 @@ export default function TestimonialCard({
     <div
       className={`flex flex-col gap-8 p-8 border-2 border-lavender-20 rounded-[15px] bg-white min-w-83.5 md:min-w-120 ${className}`}
     >
-      <div
+      <span
         className="flex gap-3"
+        role="img"
         aria-label={`Rating: ${clampedRating} out of 5`}
       >
         {Array.from({ length: clampedRating }).map((_, i) => (
           <StarIcon key={i} className="w-5 h-5 text-[#F68533]" />
         ))}
-      </div>
+      </span>
 
       <p className="text-xl font-light text-foreground leading-relaxed flex-1">
         &ldquo;{quote}&rdquo;
