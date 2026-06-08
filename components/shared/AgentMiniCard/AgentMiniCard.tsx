@@ -58,7 +58,7 @@ export default function AgentMiniCard({
         width={40}
         height={40}
         sizes="40px"
-        className="bg-lavender-40 rounded-lg md:rounded-[10.31px] w-10 h-10 md:w-[74.25px] md:h-[74.25px] shrink-0"
+        className="bg-lavender-40 rounded-lg md:rounded-[10.31px] w-10 h-10 md:w-[74.25px] md:h-[74.25px] shrink-0 object-cover object-center"
       />
     </div>
   );

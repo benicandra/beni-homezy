@@ -8,7 +8,7 @@ import AgentMiniCard from "@/components/shared/AgentMiniCard/AgentMiniCard";
 import { usePropertyFilters } from "@/lib/hooks/usePropertyFilters";
 import { defaultSocialLinks } from "@/lib/data";
 
-import Agents7 from "@/assets/agents/agents-7.png";
+import Agents7 from "@/assets/agents/agents-9.png";
 import Prop3 from "@/assets/properties/properties-3.webp";
 import Prop1 from "@/assets/properties/properties-1.webp";
 import BgText from "@/assets/bg-text.svg";
