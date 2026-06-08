@@ -39,7 +39,7 @@ export const utilityLinks: NavLink[] = [
   { label: "Sign Up", href: "/sign-up" }, 
   { label: "Forgot Password", href: "/forgot-password" }, 
   { label: "Reset Password", href: "/reset-password" }, 
-  { label: "404 Error Page", href: "/404" }, 
+  { label: "404 Error Page", href: "/page-not-found" }, 
   { label: "Style Guides", href: "/style-guides" }, 
   { label: "Licenses", href: "/licenses" }, 
   { label: "Change Log", href: "/change-log" }, 

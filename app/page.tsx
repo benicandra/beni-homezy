@@ -1,8 +1,24 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 
 import Hero from "@/components/sections/Hero/Hero";
 import Featured from "@/components/sections/Featured/Featured";
+
+export const metadata: Metadata = {
+  title: "Find Your Dream Property",
+  description:
+    "Discover your perfect home with Homezy. Browse featured properties, explore neighborhoods, and find apartments, houses, and villas for rent or sale.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Homezy | Find Your Dream Property",
+    description:
+      "Discover your perfect home with Homezy. Browse featured properties, explore neighborhoods, and find your ideal place to live.",
+    url: "/",
+  },
+};
 
 const Benefits = dynamic(
   () => import("@/components/sections/Benefits/Benefits"),

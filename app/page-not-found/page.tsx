@@ -1,5 +1,5 @@
 import NotFoundContent from "@/components/shared/NotFoundContent/NotFoundContent";
 
-export default function NotFound() {
+export default function PageNotFound() {
   return <NotFoundContent />;
 }

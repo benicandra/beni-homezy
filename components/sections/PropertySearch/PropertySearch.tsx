@@ -119,7 +119,7 @@ export default function PropertySearch() {
                 <Image
                   src={resultImage}
                   alt="No results found"
-                  className="w-60 h-auto"
+                  className="w-60 h-auto lg:w-120"
                 />
                 <p className="text-xl font-semibold text-foreground">
                   No properties found

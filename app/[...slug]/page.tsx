@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Button } from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Coming Soon",
+  description: "This page is under construction. Please check back later.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function CatchAllPage() {
   return (
