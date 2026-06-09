@@ -1,10 +1,12 @@
 import type { PropertySummaryStat } from "@/lib/types";
-import { featuredProperties } from "./properties";
+import { featuredProperties, properties } from "./properties";
 
 import BedIcon from "@/assets/icons/bed.svg";
 import BathIcon from "@/assets/icons/bath.svg";
 import AreaIcon from "@/assets/icons/surface-area.svg";
 import RepairIcon from "@/assets/icons/repair.svg";
+
+const detailsProperty = properties[1];
 
 export const featuredPropertyStats: PropertySummaryStat[] = [
   {
@@ -32,22 +34,22 @@ export const featuredPropertyStats: PropertySummaryStat[] = [
 export const propertyDetailsStats: PropertySummaryStat[] = [
   {
     label: "Bedrooms",
-    value: "4",
+    value: detailsProperty.beds,
     icon: BedIcon,
   },
   {
     label: "Bathrooms",
-    value: "4",
+    value: detailsProperty.baths,
     icon: BathIcon,
   },
   {
     label: "Square Area",
-    value: "6x8 m²",
+    value: detailsProperty.area,
     icon: AreaIcon,
   },
   {
     label: "Property Type",
-    value: "Modern Loft",
+    value: detailsProperty.propertyType,
     icon: RepairIcon,
   },
 ];

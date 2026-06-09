@@ -36,7 +36,7 @@ const accordionItems = [
     content: [],
   },
   {
-    title: "Year Build",
+    title: "Year Built",
     content: [],
   },
 ];

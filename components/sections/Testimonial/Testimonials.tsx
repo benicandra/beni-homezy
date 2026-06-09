@@ -23,14 +23,12 @@ export default function Testimonials() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  if (currentIndex > maxIndex) {
-    setCurrentIndex(maxIndex);
-  }
+  const safeIndex = Math.min(currentIndex, maxIndex);
 
   const handlePrev = () => setCurrentIndex((i) => Math.max(0, i - 1));
   const handleNext = () => setCurrentIndex((i) => Math.min(maxIndex, i + 1));
 
-  const translateX = currentIndex * (CARD_WIDTH_PX + GAP_PX);
+  const translateX = safeIndex * (CARD_WIDTH_PX + GAP_PX);
 
   return (
     <MotionSection className="w-screen relative left-1/2 -translate-x-1/2 flex flex-col gap-10 overflow-hidden">
@@ -43,7 +41,7 @@ export default function Testimonials() {
       <div className="block lg:hidden overflow-hidden">
         <div
           className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          style={{ transform: `translateX(-${safeIndex * 100}%)` }}
         >
           {testimonials.map((item) => (
             <div key={item.id} className="shrink-0 w-full">
@@ -68,8 +66,8 @@ export default function Testimonials() {
       <CarouselControls
         onPrev={handlePrev}
         onNext={handleNext}
-        disablePrev={currentIndex === 0}
-        disableNext={currentIndex === maxIndex}
+        disablePrev={safeIndex === 0}
+        disableNext={safeIndex === maxIndex}
         prevAriaLabel="Previous testimonial"
         nextAriaLabel="Next testimonial"
       />

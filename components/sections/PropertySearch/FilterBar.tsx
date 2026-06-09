@@ -76,7 +76,7 @@ export default function FilterBar({
           onClick={handleToggleModal}
         >
           <CandleIcon className="w-6 h-6" />
-          <p className="text-base font-medium whitespace-nowrap">More Filter</p>
+          <p className="text-base font-medium whitespace-nowrap">More Filters</p>
         </div>
         {isMoreFilterOpen && (
           <MoreFilterModal

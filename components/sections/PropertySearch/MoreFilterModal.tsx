@@ -51,7 +51,7 @@ export default function MoreFilterModal({
       className="absolute top-[calc(100%+16px)] right-0 bg-white rounded-[24px] shadow-[0px_20px_60px_rgba(0,0,0,0.08)] border border-[#F3F4F6] p-6 w-[380px] z-[100] flex flex-col gap-6 cursor-default"
       onClick={(e) => e.stopPropagation()}
     >
-      <h3 className="font-bold text-[22px] text-foreground tracking-tight">More Filter</h3>
+      <h3 className="font-bold text-[22px] text-foreground tracking-tight">More Filters</h3>
 
       <div className="flex bg-lavender-20 rounded-[16px] p-1.5">
         <Button
